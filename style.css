@@ -1,0 +1,72 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  color:black;
+}
+body {
+  font-family: "Recursive", sans-serif;
+}
+header {
+    margin-top: 20px;
+  display: flex;
+  justify-content: space-evenly;
+}
+.vignette {
+  height: 130px;
+  border-radius: 50%;
+}
+.aside_head {
+  width: 200px;
+  height: 80px;
+  position: relative;
+top: 60px;
+}
+.icone_panier {
+  display: flex;
+  justify-content: center;
+}
+.legende_aside {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8em;
+}
+.inside_aside{
+    height: 80px;
+    
+}
+/* .panier_icone{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+li {
+  list-style-type: none;
+}
+nav {
+  text-align: center;
+}
+.menu {
+  display: flex;
+  width: 100%;
+  background: #ffd9d9;
+  justify-content: space-evenly;
+}
+.menu > li {
+  float: left;
+  color: #000000;
+  width: 140px;
+  height: 40px;
+  line-height: 40px;
+
+  cursor: pointer;
+  font-size: 17px;
+}
+
+
+.menu > li:hover {
+  background: #ffbaaf;
+}

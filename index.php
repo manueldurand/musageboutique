@@ -8,9 +8,9 @@ error_reporting(E_ALL);
 ini_set("display_errors", 1);
 // Attention : A supprimer en production !!!
 
-require("./util/fonctions.inc.php");
-require('./util/validateurs.inc.php');
-require("./App/modele/AccesDonnees.php");
+require("./Config/fonctions.inc.php");
+require('./Config/validateurs.inc.php');
+require("./Modele/AccesDonnees.php");
 
 
 $uc = filter_input(INPUT_GET, 'uc'); // Use Case
@@ -19,39 +19,38 @@ initPanier();
 
 if (!$uc) {
     $uc = 'accueil';
-    $action = 'tousLesProduits';
 }
 
 // Controleur principal
 switch ($uc) {
-    case 'accueil':
-        include 'App/controleur/c_consultation.php';
-        break;
     case 'boutique' :
-        include 'App/controleur/c_consultation.php';
+        include 'Controleur/ProduitControleur.php';
         break;
+        case 'voirProduit' :
+            include 'Controleur/ProduitControleur.php';
+            break;
     case 'panier' :
-        include 'App/controleur/c_gestionPanier.php';
+        include 'Controleur/C_gestionPanier.php';
         break;
     case 'commander':
-        include 'App/controleur/c_passerCommande.php';
+        include 'Controleur/C_passerCommande.php';
         break;
     case 'inscription' :
-        include 'App/controleur/c_monCompte.php';
+        include 'Controleur/C_monCompte.php';
         break;
     case 'connexion':
-        include 'App/controleur/c_monCompte.php';
+        include 'Controleur/C_monCompte.php';
         break;
     case 'deco':
-        include 'App/controleur/c_monCompte.php';
+        include 'Controleur/C_monCompte.php';
         break;
     case 'compte':
-        include ('App/controleur/c_moncompte.php');
+        include ('Controleur/C_moncompte.php');
         break;
     default:
         break;
 }
 
 
-include("App/vue/template.php");
+include("Vue/base.php");
 

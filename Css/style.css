@@ -1,0 +1,277 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root{
+  --main_font: "Recursive";
+  --main_color: #ffd9d9;
+  --dark_main_color: #ffbaaf;
+  --light_bg: #fff5f5;
+  --second_color: #7eb77f;
+  --grey-bg:#d9d9d9;
+
+
+}
+a {
+  text-decoration: none;
+  color:black;
+}
+body {
+  font-family: "Recursive", sans-serif;
+}
+header {
+    margin-top: 20px;
+  display: flex;
+  justify-content: space-evenly;
+}
+.vignette {
+  height: 130px;
+  border-radius: 50%;
+}
+.aside_head {
+  width: 200px;
+  height: 80px;
+  position: relative;
+top: 60px;
+}
+.icone_panier {
+  display: flex;
+  justify-content: center;
+}
+.legende_aside {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8em;
+}
+.inside_aside{
+    height: 80px;
+    
+}
+/* .panier_icone{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+li {
+  list-style-type: none;
+}
+nav {
+  text-align: center;
+}
+.menu {
+  display: flex;
+  width: 100%;
+  background: var(--main_color);
+  justify-content: space-evenly;
+}
+.menu > li {
+  float: left;
+  color: #000000;
+  width: 140px;
+  height: 40px;
+  line-height: 40px;
+
+  cursor: pointer;
+  font-size: 17px;
+}
+
+
+.menu > li:hover {
+  background: var(--dark_main_color);
+}
+
+
+/* page accueil */
+
+.bandeau-images {
+  display: flex;
+  justify-content: space-evenly;
+}
+.cote-bandeau {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.image-cote {
+
+  width: 200px;
+
+}
+.image-centre {
+  width: 250px;
+}
+
+.texte-accueil {
+  margin: 2em;
+  width: 90%;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* page boutique */
+
+.boutique {
+  display: flex;
+
+}
+.boutique-container{
+  width: 75%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.produits-container {
+  margin-top: 5em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+
+}
+.titre-container{
+  font-size: 3em;
+  margin-top: 1.5em;
+  text-align: center;
+  width: 100%;
+}
+.card-produit {
+  margin: 2em;
+  border : solid 2px var(--dark_main_color);
+}
+
+
+.image-card {
+  width: 200px;
+}
+
+.card-nom {
+  text-align: center;
+}
+.aside-menu {
+  width: 20%;
+  margin-left: 4em;
+}
+
+.aside-menu{
+  margin-top: 12em;
+  width: 300px;
+  height: 500px;
+  background: var(--light_bg);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+}
+
+.aside-menu .btn{
+  display:block;
+  padding: 1rem;
+  border-bottom: solid 1px var(--dark_main_color);
+  border-top: solid 1px var(--dark_main_color);
+  position: relative;
+}
+
+.aside-menu .sous-menu {
+  background: var(--light_bg);
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height .8s ease-out;
+}
+
+.aside-menu .sous-menu a{
+  display:block;
+  padding: 1rem;
+  position: relative;
+}
+
+/* .aside-menu .sous-menu a::before{
+  content:'';
+  display:block;
+  position: absolute;
+  top:0;
+  left:0;
+  height: 100%;
+  width: 5px;
+  background: #e43f5a;
+  opacity: 0;
+  transition: all .5s;
+} */
+
+.aside-menu .sous-menu a:hover{
+  background-color: var(--dark_main_color);
+  /* padding-left: calc(1rem + 5px); */
+}
+
+.aside-menu .sous-menu a:hover::before{
+  opacity: 1;
+}
+
+.item:target .sous-menu{
+  max-height: 20rem;
+}
+
+/* page détail produit */
+
+.detail-produit {
+  display: flex;
+  justify-content: space-evenly;
+  
+}
+
+.images {
+  display: flex;
+  flex-direction: column;
+width: 40%;
+height: 350px;
+margin: 3em;
+border: 2px var(--dark_main_color) solid;
+box-shadow: 10px 10px 10px var(--grey-bg);
+justify-content: space-between;
+
+}
+.image-grande {
+  max-width: 300px;
+  max-height: 250px;
+  display: flex;
+
+}
+.image-container {
+display: flex;
+justify-content: center;
+}
+.prix {
+  display: flex;
+justify-content: center;
+padding: 1.5em;
+font-weight: 700;
+font-size: 1.5em;
+
+
+}
+
+.cadre-produit {
+  border: #000000 2px solid;
+  width: 40%;
+  margin: 3em;
+  padding: 2em;
+}
+.description-produit {
+  margin-top: 1em;
+  height: 50%;
+}
+.btn-ajouter {
+  margin-left: 3em;
+}
+.btn {
+  padding: 0.5em 1.5em;
+  background-color: var(--second_color);
+  color: white;
+}
+
+.btn-retour {
+  display: flex;
+  justify-content: center;
+
+}
+.centre {
+  cursor: pointer;
+}

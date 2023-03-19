@@ -62,6 +62,8 @@
                     break;
                 case 'voirProduit':
                     include 'Vue/produit.php';
+                case 'commander':
+                    include 'Vue/panier.php';
 
             }
 
@@ -69,6 +71,6 @@
 
         ?>
     </main>
-    
+    <script defer src="Js/main.js"></script>
 </body>
 </html>

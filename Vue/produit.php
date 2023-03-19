@@ -12,7 +12,7 @@
         <p class="description-produit">
             <?= $produit['description'] ?>
         </p>
-        <form class="ajouter-panier" method="POST">
+        <form class="ajouter-panier" method="POST" action="index.php?uc=commander&action=ajoutPanier&produit=<?= $produit['id'] ?>">
             <label for="quantite">Quantité
             <input type="number" size="2" value="1" min="1" max="50" id="quantite"></label>
             <input type="submit" value="Ajouter" class="btn btn-ajouter">

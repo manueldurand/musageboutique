@@ -6,7 +6,7 @@ switch ($action) {
     case 'tousLesProduits':
         $produits = M_Produit::trouveTousLesProduits();
         break;
-        case 'voir':
+    case 'voir':
             $idProduit = filter_input(INPUT_GET, 'produit');
             $produit = M_Produit::trouveLeProduit($idProduit);
         break;

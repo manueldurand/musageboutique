@@ -26,14 +26,14 @@ switch ($uc) {
     case 'boutique' :
         include 'Controleur/ProduitControleur.php';
         break;
-        case 'voirProduit' :
-            include 'Controleur/ProduitControleur.php';
-            break;
+    case 'voirProduit' :
+        include 'Controleur/ProduitControleur.php';
+        break;
     case 'panier' :
-        include 'Controleur/C_gestionPanier.php';
+        include 'Controleur/PanierControleur.php';
         break;
     case 'commander':
-        include 'Controleur/C_passerCommande.php';
+        include 'Controleur/PanierControleur.php';
         break;
     case 'inscription' :
         include 'Controleur/C_monCompte.php';

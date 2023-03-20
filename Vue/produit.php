@@ -4,7 +4,7 @@
         <div class="image-container">
             <img src="assets/img/comp/<?= $produit['image'] ?>" class="image-grande" alt="photo du produit">
         </div class="card-prix">
-        <p class="prix">9.99 €</p>
+        <p class="prix"><?= $produit['prix']?>€</p>
 
     </div>
     <div class="cadre-produit">

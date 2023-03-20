@@ -8,7 +8,9 @@
  */
 function initPanier() {
     if (!isset($_SESSION['produits'])) {
-        $_SESSION['produits'] = array();
+        $_SESSION['produits'] = array(
+
+        );
     }
 }
 
@@ -30,10 +32,10 @@ function supprimerPanier() {
  * @param $idProduit : identifiant de produit
  * @return vrai si le produit n'était pas dans la variable, faux sinon 
  */
-function ajouterAuPanier($idProduit) {
+function ajouterAuPanier(int $idProduit, int $quantite) {
     $ok = false;
     if (!in_array($idProduit, $_SESSION['produits'])) {
-        $_SESSION['produits'][] = $idProduit;
+        $_SESSION['produits'][] = [$idProduit, $quantite];
         $ok = true;
     }
     return $ok;

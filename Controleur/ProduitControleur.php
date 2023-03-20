@@ -10,5 +10,13 @@ switch ($action) {
             $idProduit = filter_input(INPUT_GET, 'produit');
             $produit = M_Produit::trouveLeProduit($idProduit);
         break;
+    case 'ajoutPanier':
+        $idProduit = filter_input(INPUT_POST, 'produit');
+        $quantite = filter_input(INPUT_POST, 'quantite');
+        ajouterAuPanier($idProduit, $quantite) ;
+        afficheMessage("Article ajouté au panier !");
+        
+        break;
+
 
 }

@@ -5,8 +5,8 @@
  */
 class M_Produit {
 
-    public static function trouveTousLesProduits() {
-        $request = "SELECT id, nom_produit, description, image FROM lafleur_produits";
+    public static function trouveTousLesProduitsVisibles() {
+        $request = "SELECT id, nom_produit, description, image FROM lafleur_produits WHERE stock > '0'";
         $res = AccesDonnees::query($request);
         return $res->fetchAll();
     

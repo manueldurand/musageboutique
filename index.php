@@ -35,6 +35,12 @@ switch ($uc) {
     case 'commander':
         include 'Controleur/PanierControleur.php';
         break;
+    case 'panierConfirmer';
+        include 'Controleur/ProduitControleur.php';
+        break;
+    case 'livraison':
+        include 'Controleur/LivraisonControleur.php';
+        break;
     case 'inscription' :
         include 'Controleur/C_monCompte.php';
         break;
@@ -45,7 +51,7 @@ switch ($uc) {
         include 'Controleur/C_monCompte.php';
         break;
     case 'compte':
-        include ('Controleur/C_moncompte.php');
+        include 'Controleur/C_moncompte.php';
         break;
     default:
         break;

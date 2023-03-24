@@ -12,9 +12,10 @@
         <p class="description-produit">
             <?= $produit['description'] ?>
         </p>
-        <form class="ajouter-panier" method="POST" action="index.php?uc=voirProduit&action=ajoutPanier&produit=<?= $produit['id'] ?>">
+        <form class="ajouter-panier" method="POST" action="index.php?uc=panierConfirmer&action=ajoutPanier&produit=<?= $produit['id'] ?>">
             <label for="quantite">Quantité
-            <input type="number" size="2" value="1" min="1" max="50" id="quantite"></label>
+            <input type="number" size="2" value="1" min="1" max="50" name="quantite" id="quantite"></label>
+            <input type="hidden" value="<?=$produit?>" name="produit">
             <input type="submit" name="ajouter" value="ajouter" class="btn btn-ajouter">
         </form>
 

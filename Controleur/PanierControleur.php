@@ -16,4 +16,12 @@ switch ($action) {
             
         }
         break;
+    case 'infoPanier':
+        if(isset($_SESSION['panier'])) {
+
+            $articlesPanier = $_SESSION['panier'];
+            foreach($articlesPanier as $article){
+                $idArticlesPanier[] = $article[0];
+            }
+        }
 }

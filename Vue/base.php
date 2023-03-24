@@ -20,7 +20,7 @@
         </div>
         <div class="aside_head">
             <div class="inside_aside">
-            <div class="icone_panier"><a href="#"><img src="assets/icones/icons8-shopping-cart-48.png" alt="panier"></a></div>
+            <div class="icone_panier"><a href="index.php?uc=commander&action=infoPanier"><img src="assets/icones/icons8-shopping-cart-48.png" alt="panier"></a></div>
             <p class="legende_aside">
             <?php if(!isset($_SESSION['id'])):?>
                 <a href="index.php?uc=inscription"><span>inscription</span></a><a href="index.php?uc=connexion"><span>connexion</span></a>
@@ -40,7 +40,7 @@
             <li><a href="index.php?uc=boutique&action=tousLesProduits">
                 Boutique
             </a></li>
-            <li><a href="index.php?$uc=livraison">
+            <li><a href="index.php?uc=livraison">
               Livraison
             </a></li>
             <li><a href="index.php?$uc=contact">
@@ -62,8 +62,18 @@
                     break;
                 case 'voirProduit':
                     include 'Vue/produit.php';
+                    break;
                 case 'commander':
                     include 'Vue/panier.php';
+                    break;
+                case 'livraison':
+                    include 'Vue/livraison.php';
+                    break;
+                case 'panierConfirmer':
+                    include 'Vue/panierConfirmer.php';
+                    break;
+
+
 
             }
 

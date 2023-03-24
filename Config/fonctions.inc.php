@@ -35,7 +35,7 @@ function supprimerPanier() {
 function ajouterAuPanier(int $idProduit, int $quantite) {
     $ok = false;
     if (!in_array($idProduit, $_SESSION['produits'])) {
-        $_SESSION['produits'][] = [$idProduit, $quantite];
+        $_SESSION['panier'][] = [$idProduit, $quantite];
         $ok = true;
     }
     return $ok;

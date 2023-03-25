@@ -26,18 +26,12 @@ function supprimerPanier() {
 /**
  * Ajoute un produit au panier
  *
- * Teste si l'identifiant du produit est déjà dans la variable session 
- * ajoute l'identifiant à la variable de type session dans le cas où
- * où l'identifiant du produit n'a pas été trouvé
- * @param $idProduit : identifiant de produit
- * @return vrai si le produit n'était pas dans la variable, faux sinon 
+ *
  */
-function ajouterAuPanier(int $idProduit, int $quantite) {
-    $ok = false;
-    if (!in_array($idProduit, $_SESSION['produits'])) {
-        $_SESSION['panier'][] = [$idProduit, $quantite];
+function ajouterAuPanier(int $idProduit,  $nomProduit, $image, $prix, int $quantite) {
+        $_SESSION['panier'][] = [$idProduit, $nomProduit, $image, $prix, $quantite];
         $ok = true;
-    }
+    
     return $ok;
 }
 
@@ -99,4 +93,25 @@ function afficheErreurs(array $msgErreurs) {
  */
 function afficheMessage(string $msg) {
     echo '<div class="message">'.$msg.'</div>';
+}
+
+
+function ajouterProduitAuPanier() {
+    // Vérifie si l'ID du produit a été passé en paramètre GET
+    if (isset($_GET['id_produit'])) {
+        $id_produit = $_GET['id_produit'];
+
+        // Vérifie si la quantité a été passée en paramètre POST
+        if (isset($_POST['quantite'])) {
+            $quantite = $_POST['quantite'];
+
+            // Initialise le panier client en session s'il n'existe pas déjà
+            if (!isset($_SESSION['panier'])) {
+                $_SESSION['panier'] = array();
+            }
+
+            // Ajoute le produit avec sa quantité dans le panier client
+            $_SESSION['panier'][$id_produit] = $quantite;
+        }
+    }
 }

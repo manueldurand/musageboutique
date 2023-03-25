@@ -82,7 +82,7 @@ nav {
 }
 
 
-/* page accueil */
+/* -----------------------------------------page accueil */
 
 .bandeau-images {
   display: flex;
@@ -109,7 +109,7 @@ nav {
   text-align: center;
 }
 
-/* page boutique */
+/*------------------------------------- page boutique */
 
 .boutique {
   display: flex;
@@ -129,7 +129,7 @@ nav {
 
 }
 .titre-container{
-  font-size: 3em;
+  font-size: 2em;
   margin-top: 1.5em;
   text-align: center;
   width: 100%;
@@ -209,7 +209,7 @@ nav {
   max-height: 20rem;
 }
 
-/* page détail produit */
+/*--------------------------------------------- page détail produit */
 
 .detail-produit {
   display: flex;
@@ -274,4 +274,55 @@ font-size: 1.5em;
 }
 .centre {
   cursor: pointer;
+}
+
+/* ------------------------------Page Panier-------------------*/
+.panier-container {
+
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 2em;
+  min-height: 40vh;
+}
+.detail-article img {
+margin: 2px;
+  border: 1px solid black;
+  width:65px;
+  height:65px;
+}
+.detail-article:nth-child(odd) {
+  background-color: var(--main_color);
+
+}
+.panier-articles {
+
+  border: 1px solid black;
+  margin: 0 5em;
+  width:50%;
+  height: 100%;
+}
+.detail-article {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+}
+
+.panier-prix {
+  border: 1px solid black;
+  margin: 0 5em;
+  padding: 0.5em;
+  width:50%;
+  display: flex;
+  flex-direction: column;
+
+}
+.aligne-droite {
+  display: flex;
+  justify-content: flex-end;
+
+}
+.aligne-gauche {
+  display: flex;
+  justify-content: flex-start;
 }

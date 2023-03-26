@@ -38,3 +38,23 @@ function estUnMail($mail) {
 }
 
 
+function validerFormulaire($champs)
+{
+    $erreurs = array();
+
+    foreach ($champs as $nom_champ => $valeur_champ) {
+        if (empty($valeur_champ)) {
+            $erreurs[] = "Le champ $nom_champ est obligatoire.";
+        }
+    }
+
+    if (!filter_var($champs['email'], FILTER_VALIDATE_EMAIL)) {
+        $erreurs[] = "L'adresse email n'est pas valide.";
+    }
+
+    if (!preg_match('/^[0-9]{5}$/', $champs['cp'])) {
+        $erreurs[] = "Le code postal n'est pas valide.";
+    }
+
+    return $erreurs;
+}

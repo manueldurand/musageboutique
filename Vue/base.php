@@ -11,6 +11,7 @@
     <title>Header</title>
 </head>
 <body>
+    <!-- ---------------------------------EN-TETE LOGO + PANIER + LIENS INSCRIPTION CONNEXION -------------- -->
     <header>
         <div >
             <img class="vignette" src="assets/img/comp/rue_lourmarin_carre.jpg" alt="rue Lourmarin">
@@ -26,12 +27,13 @@
                 <a href="index.php?uc=inscription"><span>inscription</span></a><a href="index.php?uc=connexion"><span>connexion</span></a>
             <?php endif ?>
                 <?php if(isset($_SESSION['id'])):?>
-                    <a href="index.php?uc=compte&action=consulter"><span>Mon compte</span></a><a href="index.php?uc=deco"><span>Déconnexion</span></a>
+                    <a href="index.php?uc=compte&action=consulter"><span>Mon compte</span></a><a href="index.php?uc=deconnexion"><span>Déconnexion</span></a>
                 <?php endif ?>
              </p>
         </div>
         </div>
     </header>
+    <!-- ---------------------------------MENU BARRE DE NAVIGATION ----------------------- -->
     <nav id="wrap">
         <ul class="menu">
             <li><a href="index.php?$uc=accueil">
@@ -51,6 +53,8 @@
             </a></li>
           </ul>
     </nav>
+
+    <!-- ------------------------------------CONTROLEUR DES VUES------------------------- -->
     <main>
         <?php
             switch ($uc) {
@@ -71,6 +75,15 @@
                     break;
                 case 'panierConfirmer':
                     include 'Vue/panierConfirmer.php';
+                    break;
+                case 'inscription':
+                    include 'Vue/inscription.php';
+                    break;
+                case 'connexion':
+                    include 'Vue/connexion.php';
+                    break;
+                case 'deconnexion':
+                    include 'Vue/deconnexion.php';
                     break;
 
 

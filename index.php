@@ -42,16 +42,16 @@ switch ($uc) {
         include 'Controleur/LivraisonControleur.php';
         break;
     case 'inscription' :
-        include 'Controleur/C_monCompte.php';
+        include 'Controleur/CompteControleur.php';
         break;
     case 'connexion':
-        include 'Controleur/C_monCompte.php';
+        include 'Controleur/CompteControleur.php';
         break;
-    case 'deco':
-        include 'Controleur/C_monCompte.php';
+    case 'deconnexion':
+        include 'Controleur/CompteControleur.php';
         break;
     case 'compte':
-        include 'Controleur/C_moncompte.php';
+        include 'Controleur/CompteControleur.php';
         break;
     default:
         break;

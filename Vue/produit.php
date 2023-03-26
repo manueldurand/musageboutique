@@ -23,7 +23,7 @@
     </div>        
     </div>
 
-    <form class="btn-retour">
+    <form class="centre">
   <input class="btn centre" type="button" value="Retour" onclick="history.go(-1)">
 </form>
 

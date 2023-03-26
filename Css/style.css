@@ -121,7 +121,7 @@ nav {
   flex-wrap: wrap;
 }
 .produits-container {
-  margin-top: 5em;
+  margin-top: 3em;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -265,15 +265,16 @@ font-size: 1.5em;
   padding: 0.5em 1.5em;
   background-color: var(--second_color);
   color: white;
+  cursor: pointer;
 }
 
-.btn-retour {
-  display: flex;
-  justify-content: center;
+.ajouter-panier {
+display: flex;
 
 }
 .centre {
-  cursor: pointer;
+  display: flex;
+  justify-content: center;
 }
 
 /* ------------------------------Page Panier-------------------*/
@@ -311,18 +312,88 @@ margin: 2px;
 .panier-prix {
   border: 1px solid black;
   margin: 0 5em;
-  padding: 0.5em;
+  padding: 1.5em;
   width:50%;
   display: flex;
   flex-direction: column;
 
 }
 .aligne-droite {
-  display: flex;
-  justify-content: flex-end;
+  /* display: inline-block; */
+  float: right;
+  text-align: right;
 
 }
 .aligne-gauche {
+  /* display: inline-block; */
+ float: left;
+ text-align: left;
+ margin-right: 5%;
+}
+.date-form {
+  display: inline;
+}
+.text-comment {
+  margin-top: 2em;
+  color: #7a7a7a;
+  font-size: 0.75em;
+}
+
+/* -----------------------------PAGE INSCRIPTION------------------------------- */
+
+.inscription-container {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-evenly;
+}
+
+.form-inscription {
+  background-color: var(--light_bg);
+  margin: 2em;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+}
+
+.marge-40 {
+  margin-top: 40%;
+}
+.btn-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.form-inscription label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-inscription input {
+  display: block;
+}
+.row {
+  display: flex;
+}
+.col {
+  width: 50%;
+  padding: 1em;
+}
+input[name='adresse'] {
+  height: 50px;
+}
+input[type='submit'] {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+/* ----------------------------------- PAGE CONNEXION -------------------------------- */
+
+.connexion-container {
+  display: flex;
+  justify-content: center;
+}
+.titre {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
 }

@@ -429,3 +429,49 @@ input[type="submit"] {
   text-align: center;
   line-height: 2em;
 }
+
+.slot-img img {
+  width: 100px;
+  height: 100px;
+}
+.loterie-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.slot-item {
+  background-color: black;
+  padding: 10px;
+
+}
+.jackpot-container {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.slot-img {
+  width: 100px;
+  background-color: #fff;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  overflow:hidden;
+}
+.slot-img img.animate {
+  animation: defile 0.1s ease-in-out infinite;
+}
+
+@keyframes defile {
+  0% {
+    filter: blur(3px);
+    transform: translateY(-100px);
+  }
+  100% {
+    filter: blur(5px);
+    transform: translateY(100px);
+  }
+}

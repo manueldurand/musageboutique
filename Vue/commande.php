@@ -12,4 +12,27 @@
         </ul> 
         
     </div>
+    <div class="loterie-container">
+  <div class="slot-item">
+    <div class="slot-img">
+      <img src="assets/img/gerbera-bleu.jpg"class="img" alt="">
+    </div>
+  </div>
+  <div class="slot-item">
+    <div class="slot-img">
+      <img src="assets/img/gerbera-blanc.jpg"class="img" alt="">
+    </div>
+  </div>
+  <div class="slot-item">
+    <div class="slot-img">
+      <img src="assets/img/gerbera-rouge.jpg" class="img"alt="">
+    </div>
+  </div>
+</div>
+<div class="jackpot-container">
+
+    <button class="jackpot">Jouer</button>
+</div>
+  <script src="main.js"></script>
+
 </section>

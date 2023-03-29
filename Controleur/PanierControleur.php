@@ -31,7 +31,11 @@ switch ($action) {
         }
         $uc = 'panier';
         $action = 'infoPanier';
-        header('Location: index.php?uc=commander&action=infoPanier' );
+        header('Location: index.php?uc=panier&action=infoPanier' );
         exit();
         break;
+    case 'commander':
+        include 'Vue/commande.php';
+        break;
+        
 }

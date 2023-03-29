@@ -3,25 +3,24 @@
   padding: 0;
   box-sizing: border-box;
 }
-:root{
+:root {
   --main_font: "Recursive";
   --main_color: #ffd9d9;
   --dark_main_color: #ffbaaf;
   --light_bg: #fff5f5;
   --second_color: #7eb77f;
-  --grey-bg:#d9d9d9;
-
-
+  --second_color_dark : #497D4E;
+  --grey-bg: #d9d9d9;
 }
 a {
   text-decoration: none;
-  color:black;
+  color: black;
 }
 body {
   font-family: "Recursive", sans-serif;
 }
 header {
-    margin-top: 20px;
+  margin-top: 20px;
   display: flex;
   justify-content: space-evenly;
 }
@@ -33,7 +32,7 @@ header {
   width: 200px;
   height: 80px;
   position: relative;
-top: 60px;
+  top: 60px;
 }
 .icone_panier {
   display: flex;
@@ -44,9 +43,8 @@ top: 60px;
   justify-content: space-between;
   font-size: 0.8em;
 }
-.inside_aside{
-    height: 80px;
-    
+.inside_aside {
+  height: 80px;
 }
 /* .panier_icone{
     display: flex;
@@ -76,11 +74,21 @@ nav {
   font-size: 17px;
 }
 
-
 .menu > li:hover {
   background: var(--dark_main_color);
 }
 
+.btn {
+  padding: 0.5em 1.5em;
+  background-color: var(--second_color);
+  color: white;
+  cursor: pointer;
+}
+.btn:hover {
+  background-color: var(--second_color_dark);
+  transition: 0.3s;
+
+}
 
 /* -----------------------------------------page accueil */
 
@@ -94,9 +102,7 @@ nav {
   justify-content: center;
 }
 .image-cote {
-
   width: 200px;
-
 }
 .image-centre {
   width: 250px;
@@ -105,17 +111,17 @@ nav {
 .texte-accueil {
   margin: 2em;
   width: 90%;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   text-align: center;
+  line-height: 1.5em;
 }
 
 /*------------------------------------- page boutique */
 
 .boutique {
   display: flex;
-
 }
-.boutique-container{
+.boutique-container {
   width: 75%;
   display: flex;
   flex-wrap: wrap;
@@ -125,10 +131,8 @@ nav {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-
-
 }
-.titre-container{
+.titre-container {
   font-size: 2em;
   margin-top: 1.5em;
   text-align: center;
@@ -136,9 +140,8 @@ nav {
 }
 .card-produit {
   margin: 2em;
-  border : solid 2px var(--dark_main_color);
+  border: solid 2px var(--dark_main_color);
 }
-
 
 .image-card {
   width: 200px;
@@ -152,18 +155,18 @@ nav {
   margin-left: 4em;
 }
 
-.aside-menu{
+.aside-menu {
   margin-top: 12em;
   width: 300px;
   height: 500px;
   background: var(--light_bg);
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-.aside-menu .btn{
-  display:block;
+.aside-menu .btn {
+  display: block;
   padding: 1rem;
   border-bottom: solid 1px var(--dark_main_color);
   border-top: solid 1px var(--dark_main_color);
@@ -174,11 +177,11 @@ nav {
   background: var(--light_bg);
   overflow: hidden;
   max-height: 0;
-  transition: max-height .8s ease-out;
+  transition: max-height 0.8s ease-out;
 }
 
-.aside-menu .sous-menu a{
-  display:block;
+.aside-menu .sous-menu a {
+  display: block;
   padding: 1rem;
   position: relative;
 }
@@ -196,16 +199,16 @@ nav {
   transition: all .5s;
 } */
 
-.aside-menu .sous-menu a:hover{
+.aside-menu .sous-menu a:hover {
   background-color: var(--dark_main_color);
   /* padding-left: calc(1rem + 5px); */
 }
 
-.aside-menu .sous-menu a:hover::before{
+.aside-menu .sous-menu a:hover::before {
   opacity: 1;
 }
 
-.item:target .sous-menu{
+.item:target .sous-menu {
   max-height: 20rem;
 }
 
@@ -214,38 +217,33 @@ nav {
 .detail-produit {
   display: flex;
   justify-content: space-evenly;
-  
 }
 
 .images {
   display: flex;
   flex-direction: column;
-width: 40%;
-height: 350px;
-margin: 3em;
-border: 2px var(--dark_main_color) solid;
-box-shadow: 10px 10px 10px var(--grey-bg);
-justify-content: space-between;
-
+  width: 40%;
+  height: 350px;
+  margin: 3em;
+  border: 2px var(--dark_main_color) solid;
+  box-shadow: 10px 10px 10px var(--grey-bg);
+  justify-content: space-between;
 }
 .image-grande {
   max-width: 300px;
   max-height: 250px;
   display: flex;
-
 }
 .image-container {
-display: flex;
-justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 .prix {
   display: flex;
-justify-content: center;
-padding: 1.5em;
-font-weight: 700;
-font-size: 1.5em;
-
-
+  justify-content: center;
+  padding: 1.5em;
+  font-weight: 700;
+  font-size: 1.5em;
 }
 
 .cadre-produit {
@@ -261,16 +259,9 @@ font-size: 1.5em;
 .btn-ajouter {
   margin-left: 3em;
 }
-.btn {
-  padding: 0.5em 1.5em;
-  background-color: var(--second_color);
-  color: white;
-  cursor: pointer;
-}
 
 .ajouter-panier {
-display: flex;
-
+  display: flex;
 }
 .centre {
   display: flex;
@@ -279,42 +270,36 @@ display: flex;
 
 /* ------------------------------Page Panier-------------------*/
 .panier-container {
-
   display: flex;
   justify-content: space-evenly;
   margin-top: 2em;
   min-height: 40vh;
-
 }
 .detail-article .border {
-margin: 2px;
+  margin: 2px;
   border: 1px solid black;
-  width:65px;
-  height:65px;
+  width: 65px;
+  height: 65px;
 }
 .detail-article:nth-child(odd) {
   background-color: var(--main_color);
-
 }
 .panier-articles {
-
   border: 1px solid black;
   margin: 0 5em;
-  width:50%;
+  width: 50%;
   height: 100%;
-
 }
 .detail-article {
   display: flex;
   flex-direction: row;
   align-items: center;
-
 }
 table {
   table-layout: fixed;
   width: 100%;
 }
-td:nth-child(1){
+td:nth-child(1) {
   width: 15%;
 }
 td:nth-child(2) {
@@ -333,23 +318,22 @@ td:nth-child(4) {
   border: 1px solid black;
   margin: 0 5em;
   padding: 1.5em;
-  width:50%;
+  width: 50%;
   display: flex;
   flex-direction: column;
-
+  line-height: 2em;
 }
 .aligne-droite {
   /* display: inline-block; */
   float: right;
   text-align: right;
   padding-right: 5px;
-
 }
 .aligne-gauche {
   /* display: inline-block; */
- float: left;
- text-align: left;
- margin-right: 5%;
+  float: left;
+  text-align: left;
+  margin-right: 5%;
 }
 .date-form {
   display: inline;
@@ -399,10 +383,10 @@ td:nth-child(4) {
   width: 50%;
   padding: 1em;
 }
-input[name='adresse'] {
+input[name="adresse"] {
   height: 50px;
 }
-input[type='submit'] {
+input[type="submit"] {
   display: flex;
   justify-content: center;
   text-align: center;
@@ -417,4 +401,31 @@ input[type='submit'] {
 .titre {
   margin-top: 1.5em;
   margin-bottom: 1.5em;
+}
+
+/*---------------------------------------PAGE COMPTE -----------------------------*/
+
+.compte-container {
+  display: flex;
+  justify-content: center;
+  line-height: 2em;
+  text-align: center;
+  padding: 2em;
+
+  width: 50%;
+}
+.cadre-info {
+  margin: 2em;
+  padding: 2em 0;
+  width: 50%;
+  border: black 1px solid;
+  background-color: var(--light_bg);
+}
+
+
+/*-------------------------------PAGE LOTERIE -----------------------------------------*/
+
+.annonce-container {
+  text-align: center;
+  line-height: 2em;
 }

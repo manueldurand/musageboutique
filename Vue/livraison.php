@@ -9,7 +9,7 @@
             </label>
         </div>
     </form>
-    <p>
+    <p class="centre">
         <?php if(isset($message)) {
           echo  $message;
         }  ?>

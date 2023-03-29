@@ -44,9 +44,20 @@ public static function creerClient($nom, $prenom, $pseudo, $mdp, $email, $adress
         $statement->bindParam(":complement_adresse", $complement_adresse);
         $statement->bindParam(":cp", $cp);
         $statement->bindParam(":ville", $ville);
-        return $statement->execute();
-            
+        $statement->execute();
+        $id = $conn->lastInsertId();
+        return $id;
 }
+public static function chercherClient($id) {
+    $conn = AccesDonnees::getPdo();
+    $req = "SELECT nom, prenom, pseudo, email, adresse, complement_adresse, cp, ville FROM lafleur_clients WHERE id = :id";
+    $statement = $conn->prepare($req);
+    $statement->bindParam(':id', $id);
+    $statement->execute();
+    $data = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return $data;
+}
+
 public static function clientExiste($pseudo): bool
 {
     $conn = AccesDonnees::getPdo();

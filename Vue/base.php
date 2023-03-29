@@ -21,7 +21,7 @@
         </div>
         <div class="aside_head">
             <div class="inside_aside">
-            <div class="icone_panier"><a href="index.php?uc=commander&action=infoPanier"><img src="assets/icones/icons8-shopping-cart-48.png" alt="panier"></a></div>
+            <div class="icone_panier"><a href="index.php?uc=panier&action=infoPanier"><img src="assets/icones/icons8-shopping-cart-48.png" alt="panier"></a></div>
             <p class="legende_aside">
             <?php if(!isset($_SESSION['id'])):?>
                 <a href="index.php?uc=inscription"><span>inscription</span></a><a href="index.php?uc=connexion"><span>connexion</span></a>
@@ -67,7 +67,7 @@
                 case 'voirProduit':
                     include 'Vue/produit.php';
                     break;
-                case 'commander':
+                case 'panier':
                     include 'Vue/panier.php';
                     break;
                 case 'livraison':
@@ -85,6 +85,17 @@
                 case 'deconnexion':
                     include 'Vue/deconnexion.php';
                     break;
+                case 'bienvenue':
+                    include 'Vue/bienvenue.php';
+                    break;
+                case 'compte':
+                    include 'Vue/compte.php';
+                    break;
+                case 'commander':
+                    include 'Vue/commande.php';
+                    break;
+                    
+
 
 
 

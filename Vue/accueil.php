@@ -6,7 +6,10 @@
         </p>
         <p>
 
-            Consultez la boutique, et les conditions de livraison pour savoir si nous pouvons vous livrer
+            Consultez la boutique, et les conditions de livraison pour savoir si nous pouvons vous livrer.
+        </p>
+        <p>
+            Les livraisons sont effectuées le lendemain de la commande, mais peuvent aussi être programmées
         </p>
     </div>
     <div class="bandeau-images">

@@ -44,9 +44,11 @@ switch ($action) {
             $uc = 'inscription';
         } else {
             try {
-                M_Client::creerClient($nom, $prenom, $pseudo, $mdp, $email, $adresse, $complement_adresse, $cp, $ville);
+                $id = M_Client::creerClient($nom, $prenom, $pseudo, $mdp, $email, $adresse, $complement_adresse, $cp, $ville);
                 afficheMessage("Félicitations, votre compte a bien été créé");
-                $uc = '';
+                $_SESSION['id'] = $id;
+                $_SESSION['pseudo'] = $pseudo;
+                $uc = 'bienvenue';
             } catch (\PDOException $e) {
                 echo $e;
                 afficheMessage("erreur, veuillez recommencer la saisie");
@@ -65,7 +67,7 @@ switch ($action) {
                     $_SESSION['pseudo'] = $pseudo;
                     var_dump($_SESSION);
                     afficheMessage('Bienvenue ' . $pseudo);
-                    $uc = '';
+                    $uc = 'bienvenue';
                     break;
                 } else afficheMessage('Erreur d\'authentification, veuillez esssayer à nouveau');
                 break;
@@ -90,4 +92,10 @@ switch ($action) {
                 break;
             }
     }
+    case 'consulter': 
+        $id = $_SESSION['id'];
+        $data = M_Client::chercherClient($id);
+        var_dump($data);
+
+
 }

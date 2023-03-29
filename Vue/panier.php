@@ -5,15 +5,15 @@
    <div class="panier-container">
 
 
-      <table class="panier-articles">
-
-         <tbody>
-
-
-            <?php
+      
+      
+      
+      <?php
             if (isset($_SESSION['panier']) && (!empty($articlesPanier))) {
-               foreach ($articlesPanier as $article) :
-            ?>
+               ?>
+                  <table class="panier-articles">
+                     <tbody>
+                     <?php foreach ($articlesPanier as $article) : ?>
                   <tr scope="row" class="detail-article">
                      <td>
                         <img src="assets/img/comp/<?= $article[2]['image'] ?>" class="border" alt="image_produit">

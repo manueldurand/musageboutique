@@ -1,124 +1,110 @@
 const items = [
-    'gerbera-blanc',
-    'gerbera-blanc',
-    'gerbera-bleu',
-    'gerbera-bleu',
-    'gerbera-jaune',
-    'gerbera-jaune',
-    'gerbera-jaune',
-    'gerbera-jaune',
-    'gerbera-jaune',
-    'gerbera-jaune',
-    'gerbera-rouge',
-    'gerbera-rouge',
-    'lotus',
+  "blanc",
+  "blanc",
+  "bleu",
+  "bleu",
+  "jaune",
+  "jaune",
+  "blanc",
+  "blanc",
+  "bleu",
+  "bleu",
+  "jaune",
+  "jaune",
+  "jaune",
+  "jaune",
+  "jaune",
+  "jaune",
+  "jaune",
+  "jaune",
+  "rouge",
+  "rouge",
+  "lotus",
+  "lotus",
+  "lotus",
 
-  ]
-  document.querySelector('.jackpot')
-.addEventListener('click', () => {
+];
+let jackpotCounter = 0;
+document.querySelector(".jackpot").addEventListener("click", () => {
+  jackpotCounter++;
+  console.log(jackpotCounter);
 
+  document.querySelectorAll(".img").forEach((imgElmt, index) => {
+    const randomTime = 2500 + 1000 * index;
+    randomizeImgs(imgElmt, randomTime);
+  });
 
-  document.querySelectorAll('.img').forEach((imgElmt, index) => {
-    const randomTime = 2500 + 1000 * index 
-    randomizeImgs(imgElmt, randomTime)
-  })
-})
+  setTimeout(() => {
+    const resultat = evaluerLoterie();
+    console.log(resultat);
+  }, 6000);
+});
 
 const randomizeImgs = (imgElmt, time) => {
   const timeInterval = setInterval(() => {
-    imgElmt.classList.remove('animate')
+    imgElmt.classList.remove("animate");
 
-    chooseRandom(imgElmt)
-  }, 100)
+    chooseRandom(imgElmt);
+  }, 100);
   setTimeout(() => {
-    imgElmt.classList.remove('animate')
-    clearInterval(timeInterval)
-    checkResults()
+    imgElmt.classList.remove("animate");
+    clearInterval(timeInterval);
   }, time);
-
-}
+};
 const chooseRandom = (imgElmt) => {
-  const random = Math.floor(Math.random()*items.length);
+  const random = Math.floor(Math.random() * items.length);
   const selectedItem = items[random];
-  imgElmt.src = `assets/img/${selectedItem}.jpg`
-  imgElmt.classList.add('animate')
-}
+  imgElmt.src = `assets/img/${selectedItem}.jpg`;
+  imgElmt.classList.add("animate");
+};
 
-const checkResults = () => {
-  const imgSrcs = []
-  document.querySelectorAll('img').forEach(img => {
-    imgSrcs.push(img.src)
-  })
+function evaluerLoterie() {
+  const counts = {
+    blanc: 0,
+    bleu: 0,
+    jaune: 0,
+    rouge: 0,
+    lotus: 0,
+  };
+  let jackpot = false;
+  const images = [];
 
-  const counters = {
-    'gerbera': 0,
-    'gerbera-blanc': 0,
-    'gerbera-bleu': 0,
-    'gerbera-jaune': 0,
-    'gerbera-rouge': 0,
-    'lotus': 0,
-    'rose': 0,
-    'tournesol': 0
-  }
+  document.querySelectorAll(".img").forEach((imgElmt) => {
+    const src = imgElmt.src.split("/").pop();
+    images.push(src);
+    counts[src.split(".")[0]]++;
+  });
 
-  imgSrcs.forEach(src => {
-    const selectedItem = src.split('/').pop().split('.')[0]
-    counters[selectedItem]++
-  })
-
-  const matchingItems = Object.entries(counters).filter(([item, count]) => count === 2)
-
-  if (matchingItems.length === 1) {
-    const selectedItem = matchingItems[0][0]
-
-    if (selectedItem.startsWith('gerbera')) {
-      // Attribuer un lot "gerbera"
-      console.log('un stylo')
-    } else if (selectedItem === 'rose') {
-      // Attribuer un lot "rose"
-      console.log('une rose')
-    } else if (selectedItem === 'lotus') {
-      // Attribuer un lot "lotus"
-      console.log('un bouquet au choix !')
-    } else if (selectedItem === 'tournesol') {
-      // Attribuer un lot "tournesol"
-      console.log('un porte-clefs')
-    } else {
-      // Attribuer un lot par défaut
-      console.log('un BISOU')
+  for (const color in counts) {
+    if (counts[color] === 3) {
+      if (color === "lotus") {
+        jackpot = true;
+      }
+      return {
+        resultat: `Vous avez gagné un lot de trois ${color}!`,
+        jackpot: jackpot,
+        images: images,
+      };
     }
   }
-  else {
-    console.log('un grand MERCI');
-  }
+
+  return {
+    resultat: "Désolé, vous n'avez pas gagné de loterie.",
+    jackpot: false,
+    images: images,
+  };
 }
 
+// La première ligne utilise la méthode querySelectorAll pour sélectionner tous les éléments de la page HTML qui ont la classe CSS "img". Cela renvoie un tableau de tous les éléments correspondants.
 
+// La deuxième ligne utilise la méthode forEach pour boucler sur chaque élément du tableau renvoyé par querySelectorAll. Pour chaque élément, une fonction est exécutée.
 
-//const checkResults = () => {
-  //const imgSrcs = []
-  //document.querySelectorAll('img').forEach(img => {
-  //  imgSrcs.push(img.src)
- //})
+// La troisième ligne utilise la propriété src de l'élément de l'image pour obtenir l'URL de la source de l'image. Ensuite, nous utilisons la méthode split pour diviser l'URL en parties en utilisant le caractère slash "/" comme délimiteur. Cela nous donne un tableau de parties qui composent l'URL.
 
- // if (imgSrcs.every(src => src === imgSrcs[0])) {
-  //  const selectedItem = imgSrcs[0].split('/').pop().split('.')[0]
+// La quatrième ligne utilise la méthode pop pour extraire le dernier élément du tableau retourné par split. Cela donne le nom du fichier image sans le chemin d'accès.
 
-    //if (selectedItem.startsWith('gerbera')) {
-      // Attribuer un lot "gerbera"
-      //console.log('un stylo')
-   // } else if (selectedItem === 'rose') {
-      // Attribuer un lot "rose"
-  //    console.log('une rose')
-//    } else if (selectedItem === 'lotus') {
-      // Attribuer un lot "lotus"
-    //  console.log('un bouquet au choix !')
-//    } else if (selectedItem === 'tournesol') {
-      // Attribuer un lot "tournesol"
-  //    console.log('un porte-clefs')
-  //  } else {
-      // Attribuer un lot par défaut
-   // }
- // }
-//}
+// La cinquième ligne utilise la méthode push pour ajouter le nom du fichier image au tableau images.
 
+// La sixième ligne utilise le nom du fichier image pour incrémenter un compteur dans l'objet counts. Nous utilisons la méthode split pour séparer le nom de fichier en parties en utilisant le caractère point "." comme délimiteur. Cela nous donne un tableau de parties qui composent le nom de fichier. Nous utilisons ensuite la première partie (l'élément 0) pour déterminer la couleur de l'image et incrémenter le compteur de cette couleur dans l'objet counts.
+
+// En résumé, cette partie de code permet de récupérer le nom de chaque image affichée sur la page, de stocker ces noms dans un tableau et d'incrémenter un compteur pour chaque couleur d'image. Cela nous permet de déterminer si le joueur a gagné la loterie en vérifiant si le tableau counts contient trois occurrences de chaque couleur.

@@ -441,7 +441,8 @@ input[type="submit"] {
 
 }
 .slot-item {
-  background-color: black;
+  background-image: linear-gradient(var(--dark_main_color), var(--second_color) );
+  /* background-color: black; */
   padding: 10px;
 
 }
@@ -457,6 +458,7 @@ input[type="submit"] {
   background-color: #fff;
   padding: 10px;
   display: flex;
+  justify-content: center;
   align-items: center;
   border-radius: 20px;
   overflow:hidden;

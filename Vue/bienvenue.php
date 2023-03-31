@@ -1,6 +1,6 @@
 <section>
     <h3 class="titre centre">
-        Bienvenue, <?= $_SESSION['pseudo'] ?>
+        Bienvenue, <?= $_SESSION['prenom'] ?>
     </h3>
 <div class="btn-container">
     <a href="index.php?uc=compte&action=consulter"><button class="btn">voir mon compte</button></a>

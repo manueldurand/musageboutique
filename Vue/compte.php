@@ -9,9 +9,6 @@
             Prénom: <?= $data[0]['prenom'] ?>
         </p>
         <p>
-            Pseudo: <?= $data[0]['pseudo'] ?>
-        </p>
-        <p>
             Adresse: <?= $data[0]['adresse'] ?>
         </p>
         <?php if(!empty($data[0]['complement_adresse'])): ?>

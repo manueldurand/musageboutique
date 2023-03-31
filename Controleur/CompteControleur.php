@@ -14,6 +14,7 @@ switch ($action) {
             $mdp = filter_input(INPUT_POST, 'mdp');
             $adresse = filter_input(INPUT_POST, 'adresse');
             $complement_adresse = filter_input(INPUT_POST, 'complement_adresse');
+            $tel = filter_input(INPUT_POST, 'telephone');
             $cp = filter_input(INPUT_POST, 'cp');
             $ville = filter_input(INPUT_POST, 'ville');
         }
@@ -38,10 +39,10 @@ switch ($action) {
             $uc = 'inscription';
         } else {
             try {
-                $id = M_Client::creerClient($nom, $prenom, $mdp, $email, $adresse, $complement_adresse, $cp, $ville);
+                $id = M_Client::creerClient($nom, $prenom, $mdp, $email, $adresse, $complement_adresse, $tel, $cp, $ville);
                 afficheMessage("Félicitations, votre compte a bien été créé");
                 $_SESSION['id'] = $id;
-                $_SESSION['pseudo'] = $pseudo;
+                $_SESSION['prenom'] = $prenom;
                 $uc = 'bienvenue';
             } catch (\PDOException $e) {
                 echo $e;
@@ -53,14 +54,14 @@ switch ($action) {
 
     case 'connexion': {
             if (isset($_POST['connexion'])) {
-                $pseudo = trim(filter_input(INPUT_POST, 'pseudo'));
+                $email = trim(filter_input(INPUT_POST, 'email'));
                 $mdp = filter_input(INPUT_POST, 'mdp');
 
-                if (M_Client::clientExiste($pseudo) && (M_Client::checkMdp($pseudo, $mdp))) {
-                    $_SESSION['id'] = M_Client::checkMdp($pseudo, $mdp);
-                    $_SESSION['pseudo'] = $pseudo;
+                if (M_Client::clientExiste($email) && (M_Client::checkMdp($email, $mdp))) {
+                    $_SESSION['id'] = M_Client::checkMdp($email, $mdp);
+                    $_SESSION['prenom'] = $prenom;
                     var_dump($_SESSION);
-                    afficheMessage('Bienvenue ' . $pseudo);
+                    afficheMessage('Bienvenue ' . $prenom);
                     $uc = 'bienvenue';
                     break;
                 } else afficheMessage('Erreur d\'authentification, veuillez esssayer à nouveau');
@@ -81,7 +82,7 @@ switch ($action) {
             }
     
             if (isset($annul)) {
-                afficheMessage('welcome back, ' . $_SESSION['pseudo'] . ' !');
+                afficheMessage('welcome back, ' . $_SESSION['prenom'] . ' !');
                 $uc = '';
                 break;
             }

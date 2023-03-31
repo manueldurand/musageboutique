@@ -3,7 +3,7 @@
     <div class="connexion-container">        
          <form action="index.php?uc=connexion&action=connexion" method="POST" class="form-inscription">
         <p>
-        <label for="pseudo">Pseudo : </label>
+        <label for="pseudo">Email : </label>
         <input type="text" id="pseudo" name="pseudo">
         </p>
         <p>

@@ -17,7 +17,7 @@
 class AccesDonnees {
 
     private static $serveur = 'mysql:host=localhost';
-    private static $bdd = 'dbname=lafleur';
+    private static $bdd = 'dbname=lafleur2';
     private static $user = 'root';
     private static $mdp = '';
 

@@ -22,17 +22,13 @@
         <input type="text" name="prenom" id="prenom" maxlength="45">
       </p>
       <p>
-        <label for="pseudo">Pseudo :</label>
-        <input type="text" name="pseudo" required id="pseudo">
-      </p>
+        <label for="email">Email :</label>
+        <input type="email" name="email" required id="email">
+      </p>   
       <p>
         <label for="mdp">Mot de passe :</label>
         <input type="password" name="mdp" id="mdp" maxlength="45">
       </p>
-      <p>
-          <label for="email">Adresse mail :</label>
-          <input type="email" name="email" required id="email">
-        </p>   
     </div>
     <div class="col">
       <p>
@@ -41,7 +37,11 @@
       </p>
       <p>
         <label for="adresse">Complément :</label>
-        <input type="text" name="complement_adresse" id="adresse">
+        <input type="text" name="complement_adresse" id="complement">
+      </p>
+      <p>
+        <label for="telephone">Téléphone</label>
+        <input type="text" name="telephone" required id="telephone">
       </p>
       <p>
         <label for="code_postal">Code postal :</label>

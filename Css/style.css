@@ -81,11 +81,17 @@ nav {
 .btn {
   padding: 0.5em 1.5em;
   background-color: var(--second_color);
-  color: white;
+  text-transform: uppercase;
+  color: black;
+  font-weight: 600;
+  font-size: 0.8em;
+  /* letter-spacing: 1px; */
   cursor: pointer;
 }
 .btn:hover {
   background-color: var(--second_color_dark);
+  color: white;
+  font-weight: 700;
   transition: 0.3s;
 
 }

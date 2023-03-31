@@ -43,16 +43,46 @@
                                                                                           $prixLivraison = 0;
                                                                                        } ?> €</span></p>
          <p><span class="aligne-gauche">Total : </span><span class="aligne-droite"><?= number_format($sous_total + $prixLivraison, '2', '.', ''); ?> €</span></p>
+        
+         <form action="index.php?uc=commander&action=enregistrePanier" method="POST">
+         <input type="hidden" name="prixTotal" value="<?=$sous_total + $prixLivraison?>">
          <p>
             <span class="aligne-gauche">Date de la livraison :</span>
             <span class="aligne-droite">
-               <input class="date-form" type="number" name="date_jour" value="<?php echo date('d'); ?>" min="1" max="31" step="1" size="2" />
+               <input class="date-form" type="number" name="date_jour" value="<?php echo date('d', strtotime('+1 day')); ?>" min="1" max="31" step="1" size="2" />
                <input class="date-form" type="number" name="date_mois" value="<?php echo date('m'); ?>" min="1" max="12" step="1" size="2" />
                <input class="date-form" type="number" name="date_annee" value="<?php echo date('Y'); ?>" step="1" size="5" />
             </span>
+            <p>
+   <span class="aligne-gauche">Heure de la livraison :</span>
+   <span class="aligne-droite">
+<select name="heure">
+  <option value="">--</option>
+  <option value="09">09</option>
+  <option value="10">10</option>
+  <option value="11">11</option>
+  <option value="12">12</option>
+  <option value="13">13</option>
+  <option value="14">14</option>
+  <option value="15">15</option>
+  <option value="16">16</option>
+  <option value="17">17</option>
+  <option value="18">18</option>
+  <option value="19">19</option>
+</select>
+<select name="minute">
+  <option value="">--</option>
+  <option value="00">00</option>
+  <option value="30">30</option>
+</select>
+
+
+   </span>
+</p>
          <div class="btn-container">
-            <a href="index.php?uc=commander"><button class="btn centre marge-40">Commander</button></a>
+            <input type="submit" name="commander" value="Commander" class="btn centre marge-40">
          </div>
+         </form>
          <p class="centre text-comment">La livraison est offerte à partir de 50€ de commande.</p>
 
       <?php   } else echo 'votre panier est vide' ?>

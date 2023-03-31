@@ -31,11 +31,25 @@ switch ($action) {
         }
         $uc = 'panier';
         $action = 'infoPanier';
-        header('Location: index.php?uc=panier&action=infoPanier' );
+        header('Location: index.php?uc=panier&action=infoPanier');
         exit();
         break;
     case 'commander':
         include 'Vue/commande.php';
         break;
-        
+    case 'enregistrePanier':
+        if (isset($_POST['commander'])) {
+            $panierTotal = [];
+            $prixTotal = filter_input(INPUT_POST, 'prixTotal');
+            $dateCommande = new DateTime();
+            $date_livraison = sprintf(
+                '%04d-%02d-%02d %02d:%02d:00',
+                $_POST['annee'],
+                $_POST['mois'],
+                $_POST['jour'],
+                $_POST['heure'],
+                $_POST['minute']
+            );
+            
+        }
 }

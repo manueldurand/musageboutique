@@ -56,6 +56,9 @@ switch ($uc) {
     case 'compte';
         include 'Controleur/CompteControleur.php';
         break;
+    case 'enregistrepanier':
+        include 'Controleur/PanierControleur.php';
+        break;
     default:
         break;
 }

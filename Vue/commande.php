@@ -33,6 +33,7 @@
 
     <button class="jackpot btn">Jouer</button>
 </div>
+<h3 class="resultat centre "></h3>
   <script src="main.js"></script>
 
 </section>

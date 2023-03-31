@@ -24,6 +24,7 @@ const items = [
   "lotus",
 
 ];
+const RESULTAT = document.querySelector('.resultat')
 let jackpotCounter = 0;
 document.querySelector(".jackpot").addEventListener("click", () => {
   jackpotCounter++;
@@ -37,6 +38,7 @@ document.querySelector(".jackpot").addEventListener("click", () => {
   setTimeout(() => {
     const resultat = evaluerLoterie();
     console.log(resultat);
+    RESULTAT.textContent = resultat[resultat]
   }, 6000);
 });
 
@@ -81,7 +83,7 @@ function evaluerLoterie() {
         jackpot = true;
       }
       return {
-        resultat: `Vous avez gagné un lot de trois ${color}!`,
+        resultat: `Trois ${color}!`,
         jackpot: jackpot,
         images: images,
       };
@@ -89,7 +91,7 @@ function evaluerLoterie() {
   }
 
   return {
-    resultat: "Désolé, vous n'avez pas gagné de loterie.",
+    resultat: "Désolé, vous n'avez pas gagné.",
     jackpot: false,
     images: images,
   };

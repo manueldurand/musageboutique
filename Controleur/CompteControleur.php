@@ -10,9 +10,8 @@ switch ($action) {
         if (isset($_POST['valider'])) {
             $nom = filter_input(INPUT_POST, 'nom');
             $prenom = filter_input(INPUT_POST, 'prenom');
-            $pseudo = filter_input(INPUT_POST, 'pseudo');
-            $mdp = filter_input(INPUT_POST, 'mdp');
             $email = filter_input(INPUT_POST, 'email');
+            $mdp = filter_input(INPUT_POST, 'mdp');
             $adresse = filter_input(INPUT_POST, 'adresse');
             $complement_adresse = filter_input(INPUT_POST, 'complement_adresse');
             $cp = filter_input(INPUT_POST, 'cp');
@@ -21,9 +20,8 @@ switch ($action) {
         $champs = array(
             'nom' => $nom,
             'prenom' => $prenom,
-            'pseudo' => $pseudo,
-            'mdp' => $mdp,
             'email' => $email,
+            'mdp' => $mdp,
             'adresse' => $adresse,
             'cp' => $cp,
             'ville' => $ville
@@ -34,17 +32,13 @@ switch ($action) {
         if (count($erreurs) > 0) {
             // Affichage des erreurs
             afficheErreurs($erreurs);
-            // verifie si le pseudo existe déjà
-        } else if (M_Client::existePseudo($pseudo)) {
-            afficheMessage("ce pseudo existe déjà, si c'est bien vous allez à la  page de connexion. Sinon veuillez choisir un autre pseudo.");
-            $uc = 'inscription';
             // vérifie si l'email existe déjà
         } else if (M_Client::existeEmail($email)) {
             afficheMessage("cet email existe déjà, si c'est bien vous allez à la  page de connexion. Sinon veuillez choisir une autre adresse mail.");
             $uc = 'inscription';
         } else {
             try {
-                $id = M_Client::creerClient($nom, $prenom, $pseudo, $mdp, $email, $adresse, $complement_adresse, $cp, $ville);
+                $id = M_Client::creerClient($nom, $prenom, $mdp, $email, $adresse, $complement_adresse, $cp, $ville);
                 afficheMessage("Félicitations, votre compte a bien été créé");
                 $_SESSION['id'] = $id;
                 $_SESSION['pseudo'] = $pseudo;

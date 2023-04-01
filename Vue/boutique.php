@@ -39,15 +39,16 @@
 
     <div class="produits-container">
 
-        <?php
+        <?php 
         foreach ($produits  as $produit) : ?>
             <div class="card-produit">
-                <a href="index.php?uc=voirProduit&action=voir&produit=<?= $produit['id'] ?>">
+                <a href="index.php?uc=voirProduit&action=voir&idProduit=<?= $produit['idProduit'] ?>">
                     <div class="card-image">
-                        <img class="image-card" src="assets/img/comp/<?= $produit['image'] ?>" alt="photo de fleur">
+                        <img class="image-card" src="assets/img/comp/<?= $produit['image1'] ?>" alt="photo de fleur">
                     </div>
                     <div class="card-nom">
-                        <p><?= $produit['nom_produit'] ?></p>
+                        <p><?= $produit['nom_plante']." ". $produit['nom_couleur'] ?></p>
+                        <p><?= $produit['type_unite']?></p>
                     </div>
                 </a>
             </div>

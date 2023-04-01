@@ -25,11 +25,16 @@ function supprimerPanier() {
 
 /**
  * Ajoute un produit au panier
- *
- *
+ * @param int $id,
+ * @param string nom,
+ * @param string couleur,
+ * @param string type,
+ * @param string image,
+ * @param dec prix
+ * @param int quantité
  */
-function ajouterAuPanier(int $idProduit,  $nomProduit, $image, $prix, int $quantite) {
-        $_SESSION['panier'][] = [$idProduit, $nomProduit, $image, $prix, $quantite];
+function ajouterAuPanier(int $idProduit,  $nomProduit, $couleurProduit, $uniteProduit, $image, $prix, int $quantite) {
+        $_SESSION['panier'][] = [$idProduit, $nomProduit, $couleurProduit, $uniteProduit, $image, $prix, $quantite];
         $ok = true;
     
     return $ok;
@@ -96,22 +101,22 @@ function afficheMessage(string $msg) {
 }
 
 
-function ajouterProduitAuPanier() {
-    // Vérifie si l'ID du produit a été passé en paramètre GET
-    if (isset($_GET['id_produit'])) {
-        $id_produit = $_GET['id_produit'];
+// function ajouterProduitAuPanier() {
+//     // Vérifie si l'ID du produit a été passé en paramètre GET
+//     if (isset($_GET['id_produit'])) {
+//         $id_produit = $_GET['id_produit'];
 
-        // Vérifie si la quantité a été passée en paramètre POST
-        if (isset($_POST['quantite'])) {
-            $quantite = $_POST['quantite'];
+//         // Vérifie si la quantité a été passée en paramètre POST
+//         if (isset($_POST['quantite'])) {
+//             $quantite = $_POST['quantite'];
 
-            // Initialise le panier client en session s'il n'existe pas déjà
-            if (!isset($_SESSION['panier'])) {
-                $_SESSION['panier'] = array();
-            }
+//             // Initialise le panier client en session s'il n'existe pas déjà
+//             if (!isset($_SESSION['panier'])) {
+//                 $_SESSION['panier'] = array();
+//             }
 
-            // Ajoute le produit avec sa quantité dans le panier client
-            $_SESSION['panier'][$id_produit] = $quantite;
-        }
-    }
-}
+//             // Ajoute le produit avec sa quantité dans le panier client
+//             $_SESSION['panier'][$id_produit] = $quantite;
+//         }
+//     }
+// }

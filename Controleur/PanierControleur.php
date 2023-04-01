@@ -8,16 +8,18 @@ include_once 'Modele/M_Produit.php';
 switch ($action) {
 
     case 'passerCommande':
-        if (isset($_SESSION['id'])) {
+        if (isset($_SESSION['id_client'])) {
+            header('Location: index.php?uc=loterie');
         } else {
-            $message = "Vous devez être connecté pour passer une commande";
+            $_SESSION['message'] = "Vous devez être connecté pour passer une commande";
+            header('Location: index.php?uc=messages');
         }
         break;
     case 'infoPanier':
         if (isset($_SESSION['panier'])) {
             $articlesPanier = $_SESSION['panier'];
 
-            // var_dump($articlesPanier);
+            var_dump($articlesPanier);
         }
         break;
     case 'supprimerUnProduit':

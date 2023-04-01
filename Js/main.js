@@ -1,34 +1,17 @@
 const items = [
-  "blanc",
-  "blanc",
-  "bleu",
-  "bleu",
-  "jaune",
-  "jaune",
-  "blanc",
-  "blanc",
-  "bleu",
-  "bleu",
-  "jaune",
-  "jaune",
-  "jaune",
-  "jaune",
-  "jaune",
-  "jaune",
-  "jaune",
-  "jaune",
-  "rouge",
-  "rouge",
-  "lotus",
-  "lotus",
-  "lotus",
-
+  "blanc", "blanc","blanc","blanc","blanc","blanc","blanc",
+  "bleu","bleu","bleu","bleu","bleu","bleu","bleu",
+  "rouge","rouge","rouge","rouge","rouge","rouge","rouge",
+  "jaune","jaune","jaune","jaune","jaune",
+  "jaune","jaune","jaune","jaune","jaune",
+  "jaune","jaune","jaune","jaune","jaune",
+  "jaune","jaune","jaune","jaune","jaune",
+  "lotus","lotus",
 ];
 const RESULTAT = document.querySelector('.resultat')
 let jackpotCounter = 0;
 document.querySelector(".jackpot").addEventListener("click", () => {
   jackpotCounter++;
-  console.log(jackpotCounter);
 
   document.querySelectorAll(".img").forEach((imgElmt, index) => {
     const randomTime = 2500 + 1000 * index;
@@ -37,15 +20,13 @@ document.querySelector(".jackpot").addEventListener("click", () => {
 
   setTimeout(() => {
     const resultat = evaluerLoterie();
-    console.log(resultat);
-    RESULTAT.textContent = resultat[resultat]
+    envoyerResultat(resultat)
   }, 6000);
 });
 
 const randomizeImgs = (imgElmt, time) => {
   const timeInterval = setInterval(() => {
     imgElmt.classList.remove("animate");
-
     chooseRandom(imgElmt);
   }, 100);
   setTimeout(() => {
@@ -80,23 +61,63 @@ function evaluerLoterie() {
   for (const color in counts) {
     if (counts[color] === 3) {
       if (color === "lotus") {
-        jackpot = true;
+        return {
+          message: "Trois lotus ! vous gagnez un bouquet !",
+          lot: 5,
+          counter: jackpotCounter,
+        }
       }
-      return {
-        resultat: `Trois ${color}!`,
-        jackpot: jackpot,
-        images: images,
+      else if (color === "bleu" || color === "rouge" || color === "blanc"){
+        return {
+        message: `Trois ${color}! une rose à offrir !`,
+          lot: 4,
+        counter: jackpotCounter,
       };
+      }
+      else if (color === "jaune") {
+        return {
+          message: "Trois jaunes ! un porte-clés !",
+          lot: 3,
+          counter: jackpotCounter,
+        }
+      }
     }
+    else if (counts[color] == 2) {
+      if (color === "bleu" || color === "blanc" || color === "rouge") {
+        return {
+          message: `Deux ${color} ! vous gagnez un sac Lafleur!`,
+          lot: 1,
+          counter: jackpotCounter,
+        }
+      }else if (color === "jaune") {
+        return {
+          message: "Deux jaunes ! vous gagnez un stylo !",
+          lot: 1,
+          counter: jackpotCounter,
+        }
+      }
+    }
+    
   }
 
   return {
-    resultat: "Désolé, vous n'avez pas gagné.",
-    jackpot: false,
-    images: images,
+    message: "Désolé, vous n'avez pas gagné.",
+    lot:0,
+    counter: jackpotCounter,
   };
 }
 
+function envoyerResultat(resultat) {
+  console.log(resultat)
+  $.ajax({
+    type: "POST",
+    url: "index.php?uc=loterie",
+    data: {resultat: resultat},
+    success: function(response) {
+        console.log(response);
+    }
+  })
+}
 // La première ligne utilise la méthode querySelectorAll pour sélectionner tous les éléments de la page HTML qui ont la classe CSS "img". Cela renvoie un tableau de tous les éléments correspondants.
 
 // La deuxième ligne utilise la méthode forEach pour boucler sur chaque élément du tableau renvoyé par querySelectorAll. Pour chaque élément, une fonction est exécutée.

@@ -59,6 +59,9 @@ switch ($uc) {
     case 'enregistrepanier':
         include 'Controleur/PanierControleur.php';
         break;
+    case 'resultat':
+        include 'ControleurPanier.php';
+        break;
     default:
         break;
 }

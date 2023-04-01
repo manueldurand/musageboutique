@@ -48,7 +48,7 @@ try {
     $idCp = $conn->lastInsertId();
 
     $req3 = "INSERT INTO lafleur_adresses(adresse, complement_adresse, code_postal_id, ville_id) "; 
-    $req3 .= "VALUES (':adresse', ':complement_adresse', ':code_postal_id', ':ville_id')";
+    $req3 .= "VALUES (:adresse, :complement_adresse, :code_postal_id, :ville_id)";
     $statement3 = $conn->prepare($req3);
     $statement3->bindParam(':adresse', $adresse);
     $statement3->bindParam(':complement_adresse', $complement_adresse);
@@ -58,7 +58,7 @@ try {
     $idAdresse = $conn->lastInsertId();
 
     $req4 = "INSERT INTO lafleur_clients(nom_client, prenom_client, email_client, mot_de_passe, telephone, lafleur_adresses_id) ";
-    $req4 .= "VALUES (':nom',':prenom', ':email', ':mdp', ':tel', ':adId')";
+    $req4 .= "VALUES (:nom,:prenom, :email, :mdp, :tel, :adId)";
     $statement4 = $conn->prepare($req4);
     $statement4->bindParam(':nom', $nom);
     $statement4->bindParam(':prenom', $prenom);
@@ -75,30 +75,39 @@ try {
     } catch (PDOException $e) {
 
         $conn->rollback();
-        afficheErreurs();
         afficheMessage($e);
-    }
-
-
-   
+    }  
 }
 
 
-public static function chercherClient($id) {
+public static function chercherClient($idClient) {
     $conn = AccesDonnees::getPdo();
-    $req = "SELECT nom, prenom, email, adresse, complement_adresse, cp, ville FROM lafleur_clients WHERE id = :id";
+    $req = "SELECT nom_client, prenom_client, email_client, telephone, adresse, complement_adresse, code_postal, ville ";
+    $req .= "FROM lafleur_clients JOIN lafleur_adresses ON lafleur_adresses.id_adresse = lafleur_clients.lafleur_adresses_id ";
+    $req .= "JOIN lafleur_code_postal ON lafleur_code_postal.id_code_postal = lafleur_adresses.code_postal_id ";
+    $req .= "JOIN lafleur_villes ON lafleur_villes.id_ville = lafleur_adresses.ville_id WHERE lafleur_clients.id_client = :id";
     $statement = $conn->prepare($req);
-    $statement->bindParam(':id', $id);
+    $statement->bindParam(':id', $idClient);
     $statement->execute();
     $data = $statement->fetchAll(PDO::FETCH_ASSOC);
     return $data;
+}
+public static function getPrenom($idClient) {
+    $conn = AccesDonnees::getPdo();
+    $req = 'SELECT prenom_client FROM lafleur_clients ';
+    $req .= 'WHERE id_client = :id';
+    $stmt = $conn->prepare($req);
+    $stmt->bindParam(":id", $idClient);
+    $stmt->execute();
+    return $stmt->fetch()['prenom_client'];
+    
 }
 
 public static function clientExiste($email): bool
 {
     $conn = AccesDonnees::getPdo();
-    $req = 'SELECT id FROM lafleur_clients ';
-    $req .= 'WHERE pseudo = :login';
+    $req = 'SELECT id_client FROM lafleur_clients ';
+    $req .= 'WHERE email_client = :login';
     $stmt = $conn->prepare($req);
     $stmt->bindParam(":login", $email);
     $stmt->execute();
@@ -126,20 +135,20 @@ public static function clientExiste($email): bool
 public static function checkMdp(String $email, String $mdp)
 {
 $conn = AccesDonnees::getPdo();
-$req = "SELECT id, mdp FROM lafleur_clients WHERE email = :email";
+$req = "SELECT id_client, mot_de_passe FROM lafleur_clients WHERE email_client = :email";
 $stmt = $conn->prepare($req);
 $stmt->bindParam(':email', $email);
 $stmt->execute();
 
 $data = $stmt->fetch();
 
-$mdp_bdd = $data['mdp'];
+$mdp_bdd = $data['mot_de_passe'];
 
 if(!password_verify($mdp, $mdp_bdd))
 {
-    $data['id'] = false;
+    $data['id_client'] = false;
 }
-return $data['id'];
+return $data['id_client'];
 }
 
 

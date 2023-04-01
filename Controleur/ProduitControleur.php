@@ -7,7 +7,7 @@ switch ($action) {
         $produits = M_Produit::trouveTousLesProduitsVisibles();
         break;
     case 'voir':
-            $idProduit = filter_input(INPUT_GET, 'produit');
+            $idProduit = filter_input(INPUT_GET, 'idProduit');
             $produit = M_Produit::trouveLeProduit($idProduit);
         break;
     case 'ajoutPanier':
@@ -19,11 +19,15 @@ switch ($action) {
                 $_SESSION['panier'] = array();
             }
             }
-        $nomProduit = M_Produit::getNom($idProduit);
-        $prix = M_Produit::getPrix($idProduit);
-        $image = M_Produit::getImage($idProduit);
+            $produit = M_Produit::trouveLeProduit($idProduit);
+
+        $nomProduit = $produit['nom_plante'];
+        $couleurProduit = $produit['nom_couleur'];
+        $uniteProduit = $produit['type_unite'];
+        $prix = $produit['prix'];
+        $image = $produit['image1'];
              
-        ajouterAuPanier($idProduit, $nomProduit, $image, $prix, $quantite) ;
+        ajouterAuPanier($idProduit, $nomProduit, $couleurProduit, $uniteProduit, $image, $prix, $quantite) ;
         afficheMessage("Article ajouté au panier !");
         $produit = M_Produit::trouveLeProduit($idProduit);
         break;

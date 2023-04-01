@@ -1,16 +1,22 @@
 <section>
     <div class="annonce-container">
-
+<?php if(!isset($_POST['resultat'])) : ?>
         <h1 class="titre">Tentez votre chance pour gagner un lot original !</h1>
-        <h2>A gagner :</h2>
-        <ul>
-            <li>des stylos “Lafleur”</li>
-            <li>des sacs réutilisables en tissu “Lafleur”</li>
-            <li>Un porte-clés “Lafleur”</li>
-            <li>Une rose rouge à offrir</li>
-            <li>Un bouquets de roses</li>
-        </ul> 
-        
+          <p>
+            des stylos “Lafleur”, 
+            des sacs réutilisables en tissu “Lafleur”, 
+          </p>
+          <p>
+            Un porte-clés “Lafleur”, 
+            Une rose rouge à offrir, 
+            Un bouquets de roses    
+          </p>
+          <?php endif ?>
+          <?php
+if(isset($_POST['resultat'])) : ?> 
+     <h2><?= $_POST['resultat']['message'] ?></h2> 
+     <?php endif ?> 
+     
     </div>
     <div class="loterie-container">
   <div class="slot-item">
@@ -34,6 +40,6 @@
     <button class="jackpot btn">Jouer</button>
 </div>
 <h3 class="resultat centre "></h3>
-  <script src="main.js"></script>
+  <script defer src="main.js"></script>
 
 </section>

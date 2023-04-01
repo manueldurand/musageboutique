@@ -4,7 +4,7 @@
          <form action="index.php?uc=connexion&action=connexion" method="POST" class="form-inscription">
         <p>
         <label for="pseudo">Email : </label>
-        <input type="text" id="pseudo" name="pseudo">
+        <input type="text" id="email" name="email">
         </p>
         <p>
         <label for="mdp">Mot de passe : </label>

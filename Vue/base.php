@@ -94,6 +94,15 @@
                 case 'commander':
                     include 'Vue/commande.php';
                     break;
+                case 'loterie':
+                    include 'Vue/loterie.php';
+                    break;
+                case 'messages':
+                    include 'Vue/messages.php';
+                    break;
+                case 'resultat':
+                    include 'Vue/resultat.php';
+                    break;
                     
 
 
@@ -105,6 +114,8 @@
 
         ?>
     </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script defer src="Js/main.js"></script>
 </body>
 </html>

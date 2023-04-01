@@ -41,8 +41,8 @@ switch ($action) {
             try {
                 $id = M_Client::creerClient($nom, $prenom, $mdp, $email, $adresse, $complement_adresse, $tel, $cp, $ville);
                 afficheMessage("Félicitations, votre compte a bien été créé");
-                $_SESSION['id'] = $id;
-                $_SESSION['prenom'] = $prenom;
+                $_SESSION['id_client'] = $idClient;
+                $_SESSION['prenom_client'] = $prenom;
                 $uc = 'bienvenue';
             } catch (\PDOException $e) {
                 echo $e;
@@ -58,10 +58,11 @@ switch ($action) {
                 $mdp = filter_input(INPUT_POST, 'mdp');
 
                 if (M_Client::clientExiste($email) && (M_Client::checkMdp($email, $mdp))) {
-                    $_SESSION['id'] = M_Client::checkMdp($email, $mdp);
-                    $_SESSION['prenom'] = $prenom;
-                    var_dump($_SESSION);
-                    afficheMessage('Bienvenue ' . $prenom);
+                    $idClient = $_SESSION['id_client'] = M_Client::checkMdp($email, $mdp);
+                    
+                    // var_dump($_SESSION);
+                    $prenom = $_SESSION['prenom_client'] = M_Client::getPrenom($idClient);
+                    afficheMessage("Bienvenue $prenom");
                     $uc = 'bienvenue';
                     break;
                 } else afficheMessage('Erreur d\'authentification, veuillez esssayer à nouveau');
@@ -82,15 +83,15 @@ switch ($action) {
             }
     
             if (isset($annul)) {
-                afficheMessage('welcome back, ' . $_SESSION['prenom'] . ' !');
+                afficheMessage('welcome back, ' . $_SESSION['prenom_client'] . ' !');
                 $uc = '';
                 break;
             }
     }
     case 'consulter': 
-        $id = $_SESSION['id'];
-        $data = M_Client::chercherClient($id);
-        var_dump($data);
+        $idClient = $_SESSION['id_client'];
+        $data = M_Client::chercherClient($idClient);
+
 
 
 }

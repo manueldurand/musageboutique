@@ -16,10 +16,10 @@
                      <?php foreach ($articlesPanier as $article) : ?>
                   <tr scope="row" class="detail-article">
                      <td>
-                        <img src="assets/img/comp/<?= $article[2]['image'] ?>" class="border" alt="image_produit">
+                        <img src="assets/img/comp/<?= $article[4] ?>" class="border" alt="image_produit">
                      </td>
-                     <td> <?= $article[1]['nom_produit'] ?></td>
-                     <td><?= $article[4] ?> X <?= $article[3]['prix'] ?> = <?= $article[4] * $article[3]['prix']  ?> €</td>
+                     <td> <?= $article[1]." ".$article[2].", ".$article[3] ?></td>
+                     <td><?= $article[6] ?> X <?= $article[5] ?> = <?= $article[6] * $article[5]  ?> €</td>
                      <td><a class="aligne-droite" href="index.php?uc=panier&produit=<?= $article[0] ?>&action=supprimerUnProduit" onclick="return confirm('Voulez-vous vraiment retirer cet article ?');">
                            <span><img class="centre" src="assets/icones/bin.svg"></span></a></td>
 
@@ -30,7 +30,7 @@
       <div class="panier-prix">
          <?php $sous_total = 0;
                foreach ($articlesPanier as $article) {
-                  $sous_total += floatval($article[3]['prix'] * $article[4]);
+                  $sous_total += floatval($article[5] * $article[6]);
                }
 
          ?>
@@ -44,21 +44,20 @@
                                                                                        } ?> €</span></p>
          <p><span class="aligne-gauche">Total : </span><span class="aligne-droite"><?= number_format($sous_total + $prixLivraison, '2', '.', ''); ?> €</span></p>
         
-         <form action="index.php?uc=commander&action=enregistrePanier" method="POST">
+         <form action="index.php?uc=commander&action=passerCommande" method="POST">
          <input type="hidden" name="prixTotal" value="<?=$sous_total + $prixLivraison?>">
          <p>
             <span class="aligne-gauche">Date de la livraison :</span>
             <span class="aligne-droite">
-               <input class="date-form" type="number" name="date_jour" value="<?php echo date('d', strtotime('+1 day')); ?>" min="1" max="31" step="1" size="2" />
-               <input class="date-form" type="number" name="date_mois" value="<?php echo date('m'); ?>" min="1" max="12" step="1" size="2" />
-               <input class="date-form" type="number" name="date_annee" value="<?php echo date('Y'); ?>" step="1" size="5" />
+               <input class="date-form" type="number" name="jour" value="<?php echo date('d', strtotime('+1 day')); ?>" min="1" max="31" step="1" size="2" />
+               <input class="date-form" type="number" name="mois" value="<?php echo date('m'); ?>" min="1" max="12" step="1" size="2" />
+               <input class="date-form" type="number" name="annee" value="<?php echo date('Y'); ?>" step="1" size="5" />
             </span>
             <p>
    <span class="aligne-gauche">Heure de la livraison :</span>
    <span class="aligne-droite">
 <select name="heure">
-  <option value="">--</option>
-  <option value="09">09</option>
+  <option value="09" selected>09</option>
   <option value="10">10</option>
   <option value="11">11</option>
   <option value="12">12</option>
@@ -71,7 +70,6 @@
   <option value="19">19</option>
 </select>
 <select name="minute">
-  <option value="">--</option>
   <option value="00">00</option>
   <option value="30">30</option>
 </select>
@@ -80,7 +78,7 @@
    </span>
 </p>
          <div class="btn-container">
-            <input type="submit" name="commander" value="Commander" class="btn centre marge-40">
+            <input type="submit" name="commander" value="Commander" class="btn centre marge-25">
          </div>
          </form>
          <p class="centre text-comment">La livraison est offerte à partir de 50€ de commande.</p>

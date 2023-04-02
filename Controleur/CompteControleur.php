@@ -91,6 +91,13 @@ switch ($action) {
     case 'consulter': 
         $idClient = $_SESSION['id_client'];
         $data = M_Client::chercherClient($idClient);
+        break;
+    case 'modifier':
+        $idClient = $_SESSION['id_client'];
+        $data = M_Client::chercherClient($idClient);
+        break;
+            
+
 
 
 

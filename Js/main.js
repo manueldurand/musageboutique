@@ -10,12 +10,16 @@ const items = [
 ];
 const RESULTAT = document.querySelector('.resultat')
 let jackpotCounter = 0;
-document.querySelector(".jackpot").addEventListener("click", () => {
+const jackpotButton = document.querySelector(".jackpot");
+jackpotButton.addEventListener("click", () => {
   jackpotCounter++;
-
+if (jackpotCounter>=3){
+  jackpotButton.disabled = true;
+}
   document.querySelectorAll(".img").forEach((imgElmt, index) => {
     const randomTime = 2500 + 1000 * index;
     randomizeImgs(imgElmt, randomTime);
+    RESULTAT.textContent = '...';
   });
 
   setTimeout(() => {
@@ -63,21 +67,21 @@ function evaluerLoterie() {
       if (color === "lotus") {
         return {
           message: "Trois lotus ! vous gagnez un bouquet !",
-          lot: 5,
+          idLot: 5,
           counter: jackpotCounter,
         }
       }
       else if (color === "bleu" || color === "rouge" || color === "blanc"){
         return {
         message: `Trois ${color}! une rose à offrir !`,
-          lot: 4,
+          idLot: 4,
         counter: jackpotCounter,
       };
       }
       else if (color === "jaune") {
         return {
           message: "Trois jaunes ! un porte-clés !",
-          lot: 3,
+          idLot: 3,
           counter: jackpotCounter,
         }
       }
@@ -86,23 +90,29 @@ function evaluerLoterie() {
       if (color === "bleu" || color === "blanc" || color === "rouge") {
         return {
           message: `Deux ${color} ! vous gagnez un sac Lafleur!`,
-          lot: 1,
+          idLot: 1,
           counter: jackpotCounter,
         }
-      }else if (color === "jaune") {
+      }else if (color === "lotus") {
         return {
-          message: "Deux jaunes ! vous gagnez un stylo !",
-          lot: 1,
+          message: "Deux lotus ! vous gagnez une rose !",
+          idLot: 4,
           counter: jackpotCounter,
         }
       }
-    }
-    
+      else if (color === "jaune") {
+        return {
+          message: "Deux jaunes ! vous gagnez un stylo !",
+          idLot: 1,
+          counter: jackpotCounter,
+        }
+      }
+    }    
   }
 
   return {
     message: "Désolé, vous n'avez pas gagné.",
-    lot:0,
+    idLot:0,
     counter: jackpotCounter,
   };
 }
@@ -111,10 +121,12 @@ function envoyerResultat(resultat) {
   console.log(resultat)
   $.ajax({
     type: "POST",
-    url: "index.php?uc=loterie",
+    url: "Controleur/LoterieControleur.php",
+    withCredentials: true,
     data: {resultat: resultat},
     success: function(response) {
         console.log(response);
+        RESULTAT.textContent = response;
     }
   })
 }

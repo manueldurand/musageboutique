@@ -23,10 +23,17 @@
             Ville: <?= $data[0]['ville'] ?>
         </p>
         <p>
+            Email: <?= $data[0]['email_client'] ?>
+        </p>
+        <p>
             Téléphone: <?= $data[0]['telephone'] ?>
         </p>
+        <form action="index.php?uc=modifierCompte&action=consulter" method="POST">
+        <input type="hidden" name="id_client" value="$data[0]['id_client']">
+            <button class="btn centre ">modifier mes informations</button>
+        </form>
         </div>
-
     </div>
+
 
 </section>

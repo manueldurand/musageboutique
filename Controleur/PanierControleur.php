@@ -1,6 +1,7 @@
 <?php
 
 include_once 'Modele/M_Produit.php';
+include_once 'Modele/M_Lot.php';
 
 /**Contrôleur pour la gestion du panier
  * 
@@ -18,8 +19,21 @@ switch ($action) {
     case 'infoPanier':
         if (isset($_SESSION['panier'])) {
             $articlesPanier = $_SESSION['panier'];
+            var_dump($_SESSION['loterie']);
+            if (isset($_SESSION['loterie'])) {
+                $maxId = null; // Initialisation de la variable $maxId à null
+                $resultatsLoterie = $_SESSION['resultatsLoterie'];
+            foreach ($resultatsLoterie as $tuple) {
+                $idLot = $tuple[1]; // Récupération de l'id de loterie du tuple actuel
+                if ($idLot > $maxId) { // Comparaison de l'id de loterie avec $maxId
+                    $maxId = $idLot; // Affectation de $idLot à $maxId si l'id est plus grand
+                    $_SESSION['loterie']['idLot'] = $idLot;
+                }       
+            $_SESSION['lot'] = M_Lot::getLot($idLot);
+            }
+            }
 
-            var_dump($articlesPanier);
+
         }
         break;
     case 'supprimerUnProduit':
@@ -51,7 +65,21 @@ switch ($action) {
                 $_POST['jour'],
                 $_POST['heure'],
                 $_POST['minute']
-            );
-            
+            );            
+        }
+        case 'retourLoterie':
+        if (isset($_SESSION['loterie'])) {
+            $articlesPanier = $_SESSION['panier'];
+            var_dump($articlesPanier);
+            $maxId = null; // Initialisation de la variable $maxId à null
+            $resultatsLoterie = $_SESSION['resultatsLoterie'];
+        foreach ($resultatsLoterie as $tuple) {
+            $idLot = $tuple[1]; // Récupération de l'id de loterie du tuple actuel
+            if ($idLot > $maxId) { // Comparaison de l'id de loterie avec $maxId
+                $maxId = $idLot; // Affectation de $idLot à $maxId si l'id est plus grand
+                $_SESSION['loterie']['idLot'] = $idLot;
+            }       
+        $_SESSION['lot'] = M_Lot::getLot($idLot);
+        }
         }
 }

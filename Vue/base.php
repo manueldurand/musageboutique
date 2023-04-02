@@ -23,10 +23,10 @@
             <div class="inside_aside">
             <div class="icone_panier"><a href="index.php?uc=panier&action=infoPanier"><img src="assets/icones/icons8-shopping-cart-48.png" alt="panier"></a></div>
             <p class="legende_aside">
-            <?php if(!isset($_SESSION['id'])):?>
+            <?php if(!isset($_SESSION['id_client'])):?>
                 <a href="index.php?uc=inscription"><span>inscription</span></a><a href="index.php?uc=connexion"><span>connexion</span></a>
             <?php endif ?>
-                <?php if(isset($_SESSION['id'])):?>
+                <?php if(isset($_SESSION['id_client'])):?>
                     <a href="index.php?uc=compte&action=consulter"><span>Mon compte</span></a><a href="index.php?uc=deconnexion"><span>Déconnexion</span></a>
                 <?php endif ?>
              </p>
@@ -103,6 +103,10 @@
                 case 'resultat':
                     include 'Vue/resultat.php';
                     break;
+                case 'modifierCompte':
+                    include 'Vue/modifierCompte.php';
+                    break;
+                    
                     
 
 

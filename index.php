@@ -23,13 +23,13 @@ if (!$uc) {
 
 // Controleur principal
 switch ($uc) {
-    case 'boutique' :
+    case 'boutique':
         include 'Controleur/ProduitControleur.php';
         break;
-    case 'voirProduit' :
+    case 'voirProduit':
         include 'Controleur/ProduitControleur.php';
         break;
-    case 'panier' :
+    case 'panier':
         include 'Controleur/PanierControleur.php';
         break;
     case 'commander':
@@ -41,7 +41,7 @@ switch ($uc) {
     case 'livraison':
         include 'Controleur/LivraisonControleur.php';
         break;
-    case 'inscription' :
+    case 'inscription':
         include 'Controleur/CompteControleur.php';
         break;
     case 'connexion':
@@ -59,8 +59,8 @@ switch ($uc) {
     case 'enregistrepanier':
         include 'Controleur/PanierControleur.php';
         break;
-    case 'resultat':
-        include 'ControleurPanier.php';
+    case 'modifierCompte':
+        include 'Controleur/CompteControleur.php';
         break;
     default:
         break;
@@ -68,4 +68,3 @@ switch ($uc) {
 
 
 include("Vue/base.php");
-

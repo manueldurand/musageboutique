@@ -96,9 +96,47 @@ switch ($action) {
         $idClient = $_SESSION['id_client'];
         $data = M_Client::chercherClient($idClient);
         break;
+    case 'modifierCompte':
+        if(isset($_POST['modifier'])) {
+            $nom = filter_input(INPUT_POST, 'nom');
+            $prenom = filter_input(INPUT_POST, 'prenom');
+            $email = filter_input(INPUT_POST, 'email');
+            $adresse = filter_input(INPUT_POST, 'adresse');
+            $complement_adresse = filter_input(INPUT_POST, 'complement_adresse');
+            $tel = filter_input(INPUT_POST, 'telephone');
+            $cp = filter_input(INPUT_POST, 'cp');
+            $ville = filter_input(INPUT_POST, 'ville');
             
+        // $champs = array(
+        //     'nom' => $nom,
+        //     'prenom' => $prenom,
+        //     'email' => $email,
+        //     'adresse' => $adresse,
+        //     'cp' => $cp,
+        //     'ville' => $ville
+        // );
+
+        // $erreurs = validerFormulaire($champs);       
+        // if (count($erreurs) > 0) {
+        //     // Affichage des erreurs
+        //     afficheErreurs($erreurs);
+        // } else {
+            try {
+                M_Client::modifierClient($adresse, $complement_adresse, $tel, $cp, $ville);
+                afficheMessage("Vos informations ont bien été modifiées");
+                $_SESSION['id_client'] = $idClient;
+                $_SESSION['prenom_client'] = $prenom;
+                $uc = 'compte';
+            } catch (\PDOException $e) {
+                echo $e;
+                afficheMessage("erreur, veuillez recommencer la saisie");
+                die;
+            }
+        }
+        $data = M_Client::chercherClient($idClient);
+        break;
+    }
 
 
 
 
-}

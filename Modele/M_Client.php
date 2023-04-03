@@ -79,7 +79,36 @@ try {
     }  
 }
 
+/**
+ * met à jour les informations client récupérées dans le formulaire 'modifier' de la page modifierCompte.php
+ *
+ * @param string $adresse
+ * @param string $complement_adresse
+ * @param string $tel
+ * @param string $cp
+ * @param string $ville
+ * @return void
+ */
+public static function modifierClient($adresse, $complement_adresse, $tel, $cp, $ville) {
+$conn = AccesDonnees::getPdo();
+$req = "UPDATE lafleur_adresses SET adresse = :ad, complement = :comp, tel = :tel, cp = :cp, vile = :ville WHERE id_client = :id";
+$stmt = $conn->prepare($req);
+$stmt->bindParam(':ad', $adresse);
+$stmt->bindParam(':comp', $complement_adresse);
+$stmt->bindParam(':tel', $tel);
+$stmt->bindParam(':cp', $cp);
+$stmt->bindParam(':ville', $ville);
+$stmt->bindParam(':id', $_SESSION['id_client']);
+$stmt->execute();
 
+}
+
+/**
+ * récupère les informatons du client à partir de son id
+ *
+ * @param int $idClient
+ * @return void
+ */
 public static function chercherClient($idClient) {
     $conn = AccesDonnees::getPdo();
     $req = "SELECT nom_client, prenom_client, email_client, telephone, adresse, complement_adresse, code_postal, ville ";
@@ -92,6 +121,12 @@ public static function chercherClient($idClient) {
     $data = $statement->fetchAll(PDO::FETCH_ASSOC);
     return $data;
 }
+/**
+ * récupère le prénom du client à partir de son Id
+ *
+ * @param int $idClient
+ * @return void
+ */
 public static function getPrenom($idClient) {
     $conn = AccesDonnees::getPdo();
     $req = 'SELECT prenom_client FROM lafleur_clients ';
@@ -102,7 +137,12 @@ public static function getPrenom($idClient) {
     return $stmt->fetch()['prenom_client'];
     
 }
-
+/**
+ * vérifie si un client existe à partir de son email
+ *
+ * @param string $email
+ * @return boolean
+ */
 public static function clientExiste($email): bool
 {
     $conn = AccesDonnees::getPdo();

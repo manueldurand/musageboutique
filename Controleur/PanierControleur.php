@@ -19,8 +19,8 @@ switch ($action) {
     case 'infoPanier':
         if (isset($_SESSION['panier'])) {
             $articlesPanier = $_SESSION['panier'];
-            var_dump($_SESSION['loterie']);
-            if (isset($_SESSION['loterie'])) {
+            if (isset($_SESSION['resultat'])) {
+                var_dump($_SESSION['resultat']);
                 $maxId = null; // Initialisation de la variable $maxId à null
                 $resultatsLoterie = $_SESSION['resultatsLoterie'];
             foreach ($resultatsLoterie as $tuple) {

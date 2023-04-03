@@ -117,19 +117,37 @@ function evaluerLoterie() {
   };
 }
 
-function envoyerResultat(resultat) {
-  console.log(resultat)
+function envoyerResultat (resultat) {
   $.ajax({
     type: "POST",
     url: "Controleur/LoterieControleur.php",
+    data: {
+        message: resultat.message,
+        idLot: resultat.idLot,
+        counter: resultat.counter
+    },
     withCredentials: true,
-    data: {resultat: resultat},
     success: function(response) {
-        console.log(response);
-        RESULTAT.textContent = response;
+        RESULTAT.textContent = resultat.message
+        console.log(response)
     }
-  })
+});
+
 }
+
+// function envoyerResultat(resultat) {
+//   console.log(resultat)
+//   $.ajax({
+//     type: "POST",
+//     url: "Controleur/LoterieControleur.php",
+//     withCredentials: true,
+//     data: {resultat: resultat},
+//     success: function(response) {
+//         console.log(response);
+//         RESULTAT.textContent = response;
+//     }
+//   })
+// }
 // La première ligne utilise la méthode querySelectorAll pour sélectionner tous les éléments de la page HTML qui ont la classe CSS "img". Cela renvoie un tableau de tous les éléments correspondants.
 
 // La deuxième ligne utilise la méthode forEach pour boucler sur chaque élément du tableau renvoyé par querySelectorAll. Pour chaque élément, une fonction est exécutée.
@@ -143,3 +161,27 @@ function envoyerResultat(resultat) {
 // La sixième ligne utilise le nom du fichier image pour incrémenter un compteur dans l'objet counts. Nous utilisons la méthode split pour séparer le nom de fichier en parties en utilisant le caractère point "." comme délimiteur. Cela nous donne un tableau de parties qui composent le nom de fichier. Nous utilisons ensuite la première partie (l'élément 0) pour déterminer la couleur de l'image et incrémenter le compteur de cette couleur dans l'objet counts.
 
 // En résumé, cette partie de code permet de récupérer le nom de chaque image affichée sur la page, de stocker ces noms dans un tableau et d'incrémenter un compteur pour chaque couleur d'image. Cela nous permet de déterminer si le joueur a gagné la loterie en vérifiant si le tableau counts contient trois occurrences de chaque couleur.
+// function envoyerResultat(resultat) {
+//   // Créez une instance de l'objet XMLHttpRequest
+// const xhr = new XMLHttpRequest();
+
+// // Configurez la requête AJAX
+// xhr.open('POST', 'Controleur/LoterieControleur.php');
+// xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+// xhr.withCredentials = true;
+
+// // Les résultats de la loterie sont stockés dans cet objet
+// // const lotteryResults = { /* ... */ };
+
+// // Convertissez l'objet en JSON et envoyez-le au contrôleur PHP
+// xhr.send(JSON.stringify(resultat));
+
+// // Gérez la réponse de la requête AJAX
+// xhr.onreadystatechange = function(response) {
+//   if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+//     // Traitez la réponse de votre contrôleur PHP
+//  console.log(response);
+//   }
+// };
+
+// }

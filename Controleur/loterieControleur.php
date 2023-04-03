@@ -1,18 +1,26 @@
 <?php
-if(isset($_POST['resultat'])) {
-  $_SESSION['loterie'] = $_POST['resultat'];
-  $idLot = $_SESSION['loterie']['idLot'];
-  $compteur = $_SESSION['loterie']['counter'] ;
- $message = $_SESSION['loterie']['message'] ;
- $resultatsLoterie = [];
- $resultatsLoterie[] = [$compteur, $idLot];
- $_SESSION['resultatsLoterie'] = $resultatsLoterie;
+
+
+    
+    // Récupération des données envoyées via la requête AJAX
+    $message = $_POST['message'];
+    $idLot = $_POST['idLot'];
+    $counter = $_POST['counter'];
+ 
+    
+    // Stockage des données dans la variable de session
+    $_SESSION['resultat'] = array(
+        'message' => $message,
+        'idLot' => $idLot,
+        'counter' => $counter
+    );
+    // echo $message;
+    echo $_SESSION['resultat']['message'];
 
 
 
-  echo "$message (essai $compteur)";
-    // var_dump($message);
-}
+
+
 
 
 

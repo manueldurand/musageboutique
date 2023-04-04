@@ -76,8 +76,11 @@
                   </span>
                </p>
   <?php if(isset($_SESSION['loterie']) && $_SESSION['loterie']['idLot']>0): ?>
-<span class="aligne-gauche">Lot spécial Fête des mères :</span>
-<span class="aligne-droite"><? var_dump($_SESSION['lot']); ?>
+   <p>
+ <span class="aligne-gauche">Loterie "Fête des mères" :</span>
+<span class="aligne-droite"><?= $_SESSION['lot']['nom_lot'] ?></span>     
+   </p>
+
 
   <?php endif ?>
                <div class="btn-container">

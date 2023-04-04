@@ -2,6 +2,7 @@
 
 include_once 'Modele/M_Produit.php';
 include_once 'Modele/M_Lot.php';
+include_once 'Modele/M_Commande.php';
 
 /**Contrôleur pour la gestion du panier
  * 
@@ -9,8 +10,31 @@ include_once 'Modele/M_Lot.php';
 switch ($action) {
 
     case 'passerCommande':
-        if (isset($_SESSION['id_client'])) {
+        if (isset($_SESSION['id_client']) && !isset($_SESSION['loterie'])) {
             header('Location: index.php?uc=loterie');
+        } else if (isset($_SESSION['id_client']) && isset($_SESSION['loterie'])) {
+            $client_id = intval($_SESSION['id_client']);
+            $lot_id = intval($_SESSION['loterie']['idLot']);
+            $date = new DateTime();
+            $date_commande = date_format($date, 'd/m/Y');
+            $date_livraison = new DateTime(sprintf(
+                '%04d-%02d-%02d %02d:%02d:00',
+                $_POST['annee'],
+                $_POST['mois'],
+                $_POST['jour'],
+                $_POST['heure'],
+                $_POST['minute']
+            ));
+            $date_livraison_sql = $date_livraison->format('Y-m-d H:i:s');
+            
+            try {
+                $idCommande = M_Commande::creerCommande($date_commande, $date_livraison_sql, $client_id, $lot_id);
+                header('Location: index.php?uc=valideCommande');
+            } catch (\PDOException $e) {
+                echo $e;
+                afficheMessage("erreur, veuillez recommencer");
+                die;
+            }
         } else {
             $_SESSION['message'] = "Vous devez être connecté pour passer une commande";
             header('Location: index.php?uc=messages');
@@ -19,21 +43,19 @@ switch ($action) {
     case 'infoPanier':
         if (isset($_SESSION['panier'])) {
             $articlesPanier = $_SESSION['panier'];
-            if (isset($_SESSION['resultat'])) {
-                var_dump($_SESSION['resultat']);
+            if (isset($_SESSION['loterie'])) {
+                // var_dump($_SESSION['loterie']);
                 $maxId = null; // Initialisation de la variable $maxId à null
                 $resultatsLoterie = $_SESSION['resultatsLoterie'];
-            foreach ($resultatsLoterie as $tuple) {
-                $idLot = $tuple[1]; // Récupération de l'id de loterie du tuple actuel
-                if ($idLot > $maxId) { // Comparaison de l'id de loterie avec $maxId
-                    $maxId = $idLot; // Affectation de $idLot à $maxId si l'id est plus grand
-                    $_SESSION['loterie']['idLot'] = $idLot;
-                }       
-            $_SESSION['lot'] = M_Lot::getLot($idLot);
+                foreach ($resultatsLoterie as $tuple) {
+                    $idLot = $tuple[1]; // Récupération de l'id de loterie du tuple actuel
+                    if ($idLot > $maxId) { // Comparaison de l'id de loterie avec $maxId
+                        $maxId = $idLot; // Affectation de $idLot à $maxId si l'id est plus grand
+                        $_SESSION['loterie']['idLot'] = $idLot;
+                    }
+                    $_SESSION['lot'] = M_Lot::getLot($idLot);
+                }
             }
-            }
-
-
         }
         break;
     case 'supprimerUnProduit':
@@ -65,21 +87,22 @@ switch ($action) {
                 $_POST['jour'],
                 $_POST['heure'],
                 $_POST['minute']
-            );            
+            );
         }
-        case 'retourLoterie':
+    case 'retourPanier':
         if (isset($_SESSION['loterie'])) {
             $articlesPanier = $_SESSION['panier'];
-            var_dump($articlesPanier);
+            // var_dump($articlesPanier);
             $maxId = null; // Initialisation de la variable $maxId à null
             $resultatsLoterie = $_SESSION['resultatsLoterie'];
-        foreach ($resultatsLoterie as $tuple) {
-            $idLot = $tuple[1]; // Récupération de l'id de loterie du tuple actuel
-            if ($idLot > $maxId) { // Comparaison de l'id de loterie avec $maxId
-                $maxId = $idLot; // Affectation de $idLot à $maxId si l'id est plus grand
-                $_SESSION['loterie']['idLot'] = $idLot;
-            }       
-        $_SESSION['lot'] = M_Lot::getLot($idLot);
-        }
+            var_dump($resultatsLoterie);
+            foreach ($resultatsLoterie as $tuple) {
+                $idLot = $tuple[1]; // Récupération de l'id de loterie du tuple actuel
+                if ($idLot > $maxId) { // Comparaison de l'id de loterie avec $maxId
+                    $maxId = $idLot; // Affectation de $idLot à $maxId si l'id est plus grand
+                    $_SESSION['loterie']['idLot'] = $idLot;
+                }
+                $_SESSION['lot'] = M_Lot::getLot($idLot);
+            }
         }
 }

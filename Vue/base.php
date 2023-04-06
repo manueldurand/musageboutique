@@ -106,6 +106,10 @@
                 case 'modifierCompte':
                     include 'Vue/modifierCompte.php';
                     break;
+                case 'valideCommande':
+                    include 'Vue/valideCommande.php';
+                    break;
+                    
                     
                     
 

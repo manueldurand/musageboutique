@@ -62,6 +62,8 @@ switch ($uc) {
     case 'modifierCompte':
         include 'Controleur/CompteControleur.php';
         break;
+    case 'valideCommande':
+        break;
     default:
         break;
 }

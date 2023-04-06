@@ -82,10 +82,13 @@
    </p>
 
 
-  <?php endif ?>
-               <div class="btn-container">
-                  <input type="submit" name="commander" value="Commander" class="btn centre marge-25">
-               </div>
+   <div class="btn-container">
+      <input type="submit" name="commander" value="Commander" class="btn centre marge-25" onclick="return confirm('Valider votre commande et procéder au paiement ?')">
+   </div>
+   <?php endif ?>
+   <?php if(!isset($_SESSION['loterie']) || $_SESSION['loterie']['idLot'] == 0) :?>
+   <input type="submit" name="commander" value="Commander" class="btn centre marge-25">
+   <?php endif ?>
             </form>
             <p class="centre text-comment">La livraison est offerte à partir de 50€ de commande.</p>
 

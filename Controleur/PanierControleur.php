@@ -13,10 +13,11 @@ switch ($action) {
         if (isset($_SESSION['id_client']) && !isset($_SESSION['loterie'])) {
             header('Location: index.php?uc=loterie');
         } else if (isset($_SESSION['id_client']) && isset($_SESSION['loterie'])) {
+            $_SESSION['panier'] = $articlesPanier;
             $client_id = intval($_SESSION['id_client']);
             $lot_id = intval($_SESSION['loterie']['idLot']);
             $date = new DateTime();
-            $date_commande = date_format($date, 'd/m/Y');
+            $date_commande = $date->format('Y-m-d H:i:s');
             $date_livraison = new DateTime(sprintf(
                 '%04d-%02d-%02d %02d:%02d:00',
                 $_POST['annee'],
@@ -26,10 +27,12 @@ switch ($action) {
                 $_POST['minute']
             ));
             $date_livraison_sql = $date_livraison->format('Y-m-d H:i:s');
+            $etat_commande = 'en cours';
             
             try {
-                $idCommande = M_Commande::creerCommande($date_commande, $date_livraison_sql, $client_id, $lot_id);
+                $idCommande = M_Commande::creerCommande($date_commande, $date_livraison_sql, $client_id, $lot_id, $etat_commande, $articlesPanier);
                 header('Location: index.php?uc=valideCommande');
+                afficheMessage("merci pour votre commande");
             } catch (\PDOException $e) {
                 echo $e;
                 afficheMessage("erreur, veuillez recommencer");

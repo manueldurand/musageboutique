@@ -80,6 +80,36 @@ try {
 }
 
 /**
+ * vérifie si une ville existe dans la table lafleur_villes et récupère son id si elle existe,
+ * sinon créee une nouvelle donnée ville
+ *
+ * @param string $ville
+ * @return int $idVille
+ */
+public static function verifieVille($ville) {
+    $conn = AccesDonnees::getpdo();
+    $req = "SELECT * FROM lafleur_villes";
+    $stmt = $conn->prepare($req);
+    $stmt->execute();
+    $villes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $index = array_search($ville, array_column($villes, 'ville'));
+    if ($index !== false) {
+        return $villes[$index['id_ville']];
+    } else {
+        return creerVille($ville);
+        }
+    }
+
+public static function creerVille($ville) {
+            $conn = AccesDonnees::getPdo();
+            $req = "INSERT INTO lafleurvilles(ville) VALUES (:v)";
+            $statement = $conn->prepare($req);
+            $statement->bindParam(':v', $ville);
+            $statement->execute();
+            return $conn->lastInsertId();
+}
+
+/**
  * met à jour les informations client récupérées dans le formulaire 'modifier' de la page modifierCompte.php
  *
  * @param string $adresse
@@ -89,18 +119,36 @@ try {
  * @param string $ville
  * @return void
  */
-public static function modifierClient($adresse, $complement_adresse, $tel, $cp, $ville) {
+public static function modifierClient($idClient, $adresse, $complement_adresse, $tel, $cp, $ville) {
 $conn = AccesDonnees::getPdo();
-$req = "UPDATE lafleur_adresses SET adresse = :ad, complement = :comp, tel = :tel, cp = :cp, vile = :ville WHERE id_client = :id";
-$stmt = $conn->prepare($req);
-$stmt->bindParam(':ad', $adresse);
-$stmt->bindParam(':comp', $complement_adresse);
-$stmt->bindParam(':tel', $tel);
-$stmt->bindParam(':cp', $cp);
-$stmt->bindParam(':ville', $ville);
-$stmt->bindParam(':id', $_SESSION['id_client']);
-$stmt->execute();
+$conn->beginTransaction();
+//mise à jour de la ville
+$req0 = "UPDATE lafleur_villes SET ville = :v JOIN lafleur_adresses ON lafleur_adresses.ville_id = lafleur_villes.id_ville ";
+$req0 .="JOIN lafleur_clients ON lafleur_clients.lafleur_adresse_id = lafleur_adresses.id_adresse WHERE lafleur_clients.id_client = :cli";
+$stmt0 = $conn->prepare($req0);
+$stmt0->bindParam(':v', $ville);
+$stmt0->bindParam(':cli', $idClient);
+$stmt0->execute();
+// mise à jour du code postal
+$req1 = "UPDATE lafleur_code_postal SET code_postal = :c JOIN lafleur_adresses ON lafleur_adresses.id__code_postal = lafleur_code_postal.id_code_postal";
+$req1 .= "JOIN lafleur_clients ON lafleur_clients.lafleur_adresse_id = lafleur_adresses.id_adresse WHERE lafleur_clients.id_client = :cli";
+$stmt1 = $conn->prepare($req1);
+$stmt1->bindParam(':c', $cp);
+$stmt1->bindParam(':cli', $idCllient);
 
+// mise à jour de l'adresse et du complément d'adresse
+$req2 = "UPDATE lafleur_adresses SET adresse = :a, complement_adresse = :comp ";
+$req2 .= "JOIN lafleur_clients ON lafleur_clients.lafleur_adresses_id = lafleur_adresses.id_adresse WHERE id_client = :cli";
+$stmt2 = $conn->prepare($req1);
+$stmt2->bindParam(':a', $adresse);
+$stmt2->bindParam(':comp', $complement_adresse);
+$stmt2->bindParam(':cli', $_SESSION['id_client']);
+$stmt2->execute();
+
+$req3 = "UPDATE lafleur_clients SET telephone = :tel";
+$stmt3 = $conn->prepare($req3);
+$stmt3->bindParam(':tel', $tel);
+$stmt3->execute();
 }
 
 /**

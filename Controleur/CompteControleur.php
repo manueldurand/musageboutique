@@ -39,7 +39,7 @@ switch ($action) {
             $uc = 'inscription';
         } else {
             try {
-                $id = M_Client::creerClient($nom, $prenom, $mdp, $email, $adresse, $complement_adresse, $tel, $cp, $ville);
+                $idClient = M_Client::creerClient($nom, $prenom, $mdp, $email, $adresse, $complement_adresse, $tel, $cp, $ville);
                 afficheMessage("Félicitations, votre compte a bien été créé");
                 $_SESSION['id_client'] = $idClient;
                 $_SESSION['prenom_client'] = $prenom;
@@ -122,9 +122,9 @@ switch ($action) {
         //     afficheErreurs($erreurs);
         // } else {
             try {
-                M_Client::modifierClient($adresse, $complement_adresse, $tel, $cp, $ville);
-                afficheMessage("Vos informations ont bien été modifiées");
-                $_SESSION['id_client'] = $idClient;
+                $idClient = $_SESSION['id_client'];
+                M_Client::modifierClient($idClient, $adresse, $complement_adresse, $tel, $cp, $ville);
+                afficheMessage("Vos informations ont bien été modifiées");              
                 $_SESSION['prenom_client'] = $prenom;
                 $uc = 'compte';
             } catch (\PDOException $e) {

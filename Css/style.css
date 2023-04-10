@@ -126,11 +126,13 @@ nav {
 
 .boutique {
   display: flex;
+  scroll-behavior: smooth;
 }
 .boutique-container {
-  width: 75%;
+  width: 90%;
   display: flex;
   flex-wrap: wrap;
+  scroll-behavior: smooth;
 }
 .produits-container {
   margin-top: 3em;
@@ -156,27 +158,30 @@ nav {
 .card-nom {
   text-align: center;
 }
-.aside-menu {
-  width: 20%;
-  margin-left: 4em;
+.fake-aside {
+  width: 15%;
 }
-
 .aside-menu {
-  margin-top: 12em;
-  width: 300px;
-  height: 500px;
+  position: fixed;
+
+  width: 15%;
+  height:350px;
+  margin-left: 4em;
+  margin-top: 5em;
   background: var(--light_bg);
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  scroll-behavior: smooth;
 }
 
 .aside-menu .btn {
   display: block;
-  padding: 1rem;
+  padding: 0.5rem;
   border-bottom: solid 1px var(--dark_main_color);
   border-top: solid 1px var(--dark_main_color);
   position: relative;
+  scroll-behavior: smooth;
 }
 
 .aside-menu .sous-menu {
@@ -184,12 +189,14 @@ nav {
   overflow: hidden;
   max-height: 0;
   transition: max-height 0.8s ease-out;
+  scroll-behavior: smooth;
 }
 
 .aside-menu .sous-menu a {
   display: block;
-  padding: 1rem;
+  padding: 0.5rem;
   position: relative;
+  scroll-behavior: smooth;
 }
 
 /* .aside-menu .sous-menu a::before{

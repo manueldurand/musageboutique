@@ -10,6 +10,9 @@ switch ($action) {
             $idProduit = filter_input(INPUT_GET, 'idProduit');
             $produit = M_Produit::trouveLeProduit($idProduit);
         break;
+    case 'bouquets':
+        $produits = M_Produit::trouveTousLesBouquetsVisibles();
+        break;
     case 'ajoutPanier':
         if(isset($_POST['ajouter'])){
                 $idProduit = filter_input(INPUT_GET, 'produit');

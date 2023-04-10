@@ -1,4 +1,5 @@
 <section class="boutique">
+    <div class="fake-aside"></div>
     <div class="aside-menu">
         <ul>
             <li class="item" id="menu1">
@@ -25,13 +26,13 @@
                 </div>
             </li>
             <li class="item">
-            <a href="#">Fleurs à l'unité</a></li>
+            <a class="btn" href="#">Fleurs à l'unité</a></li>
             <li class="item">
-            <a href="#">Bouquets</a></li>
+            <a class="btn" href="index.php?uc=boutique&action=bouquets">Bouquets</a></li>
             <li class="item">
-            <a href="#">Fleurs séchées</a></li>
+            <a class="btn" href="#">Fleurs séchées</a></li>
             <li class="item">
-            <a href="#">Orchidées</a></li>
+            <a class="btn" href="#">Orchidées</a></li>
         </ul>
     </div>
     <div class="boutique-container">
@@ -49,6 +50,7 @@
                     <div class="card-nom">
                         <p><?= $produit['nom_plante']." ". $produit['nom_couleur'] ?></p>
                         <p><?= $produit['type_unite']?></p>
+                        <p><?= $produit['prix'] ?> €</p>
                     </div>
                 </a>
             </div>

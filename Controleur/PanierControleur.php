@@ -13,7 +13,7 @@ switch ($action) {
         if (isset($_SESSION['id_client']) && !isset($_SESSION['loterie'])) {
             header('Location: index.php?uc=loterie');
         } else if (isset($_SESSION['id_client']) && isset($_SESSION['loterie'])) {
-            $_SESSION['panier'] = $articlesPanier;
+            $articlesPanier = $_SESSION['panier'];
             $client_id = intval($_SESSION['id_client']);
             $lot_id = intval($_SESSION['loterie']['idLot']);
             $date = new DateTime();
@@ -31,12 +31,17 @@ switch ($action) {
             
             try {
                 $idCommande = M_Commande::creerCommande($date_commande, $date_livraison_sql, $client_id, $lot_id, $etat_commande, $articlesPanier);
-                header('Location: index.php?uc=valideCommande');
-                afficheMessage("merci pour votre commande");
+                supprimerPanier();
+                $articlesPanier = null;
+                $_SESSION['panier'] = [];
+                $_SESSION['message'] = "Votre commmande n° $idCommande a bien été enregistrée, merci pour votre confiance";
+                header('Location: index.php?uc=messages');
+                
             } catch (\PDOException $e) {
                 echo $e;
-                afficheMessage("erreur, veuillez recommencer");
-                die;
+                $_SESSION['message'] = "Une erreur est survenue, nous sommes désolés, veuillez recommencer";
+                header('Location: index.php?uc=messages');
+                
             }
         } else {
             $_SESSION['message'] = "Vous devez être connecté pour passer une commande";

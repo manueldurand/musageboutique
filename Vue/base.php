@@ -13,7 +13,7 @@
 <body>
     <!-- ---------------------------------EN-TETE LOGO + PANIER + LIENS INSCRIPTION CONNEXION -------------- -->
     <header>
-        <div >
+        <div id="top_page">
             <img class="vignette" src="assets/img/comp/rue_lourmarin_carre.jpg" alt="rue Lourmarin">
         </div>
         <div class="titre_header">

@@ -18,15 +18,17 @@
             <a class="btn" href="#menu2">
                 Couleurs</a>
                 <div class="sous-menu">
-                <a href="#">rouge</a>
-                    <a href="#">rose</a>
-                    <a href="#">bleu</a>
-                    <a href="#">orange</a>
-                    <a href="#">blanc</a>
+                    <a href="index.php?uc=boutique&action=couleur&id=1">blanc</a>
+                    <a href="index.php?uc=boutique&action=couleur&id=2">rouge</a>
+                    <a href="index.php?uc=boutique&action=couleur&id=3">rose</a>
+                    <a href="index.php?uc=boutique&action=couleur&id=4">jaune</a>
+                    <a href="index.php?uc=boutique&action=couleur&id=5">orange</a>
+                    <a href="index.php?uc=boutique&action=couleur&id=7">vert</a>
+                    <a href="index.php?uc=boutique&action=couleur&id=6">bleu</a>
                 </div>
             </li>
             <li class="item">
-            <a class="btn" href="#">Fleurs à l'unité</a></li>
+            <a class="btn" href="index.php?uc=boutique&action=unite">Fleurs à l'unité</a></li>
             <li class="item">
             <a class="btn" href="index.php?uc=boutique&action=bouquets">Bouquets</a></li>
             <li class="item">

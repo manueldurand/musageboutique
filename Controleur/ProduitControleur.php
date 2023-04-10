@@ -13,6 +13,13 @@ switch ($action) {
     case 'bouquets':
         $produits = M_Produit::trouveTousLesBouquetsVisibles();
         break;
+    case 'unite':
+        $produits = M_Produit::trouveLesFleursUniteVisibles();
+        break;
+    case 'couleur':
+        $id_couleur= (int)filter_input(INPUT_GET, 'id');
+        $produits = M_Produit::trouveLaCouleur(intval($id_couleur));
+        break;
     case 'ajoutPanier':
         if(isset($_POST['ajouter'])){
                 $idProduit = filter_input(INPUT_GET, 'produit');

@@ -13,7 +13,7 @@ switch ($action) {
         if (isset($_SESSION['id_client']) && !isset($_SESSION['loterie'])) {
             header('Location: index.php?uc=loterie');
         } else if (isset($_SESSION['id_client']) && isset($_SESSION['loterie'])) {
-            $articlesPanier = $_SESSION['panier'];
+            $articles_panier = $_SESSION['panier'];
             $client_id = intval($_SESSION['id_client']);
             $lot_id = intval($_SESSION['loterie']['idLot']);
             $date = new DateTime();
@@ -30,13 +30,13 @@ switch ($action) {
             $etat_commande = 'en cours';
             
             try {
-                $idCommande = M_Commande::creerCommande($date_commande, $date_livraison_sql, $client_id, $lot_id, $etat_commande, $articlesPanier);
+                $id_commande = M_Commande::creerCommande($date_commande, $date_livraison_sql, $client_id, $lot_id, $etat_commande, $articles_panier);
                 supprimerPanier();
-                $articlesPanier = null;
+                $articles_panier = null;
                 $_SESSION['panier'] = [];
                 $_SESSION['loterie'] = [];
                 $_SESSION['lot'] = [];
-                $_SESSION['message'] = "Votre commmande n° $idCommande a bien été enregistrée, merci pour votre confiance";
+                $_SESSION['message'] = "Votre commmande n° $id_commande a bien été enregistrée, merci pour votre confiance";
                 header('Location: index.php?uc=messages');
                 
             } catch (\PDOException $e) {
@@ -52,7 +52,7 @@ switch ($action) {
         break;
     case 'infoPanier':
         if (isset($_SESSION['panier'])) {
-            $articlesPanier = $_SESSION['panier'];
+            $articles_panier = $_SESSION['panier'];
             if (isset($_SESSION['loterie'])) {
                 // var_dump($_SESSION['loterie']);
                 $maxId = null; // Initialisation de la variable $maxId à null
@@ -69,10 +69,10 @@ switch ($action) {
         }
         break;
     case 'supprimerUnProduit':
-        $idProduit = filter_input(INPUT_GET, 'produit');
-        $articlesPanier = $_SESSION['panier'];
-        foreach ($articlesPanier as $key => $article) {
-            if ($idProduit == $article[0]) {
+        $id_produit = filter_input(INPUT_GET, 'produit');
+        $articles_panier = $_SESSION['panier'];
+        foreach ($articles_panier as $key => $article) {
+            if ($id_produit == $article[0]) {
 
                 unset($_SESSION['panier'][$key]);
             }

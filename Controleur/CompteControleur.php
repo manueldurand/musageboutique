@@ -2,6 +2,7 @@
 
 include_once 'Modele/M_Produit.php';
 include_once 'Modele/M_Client.php';
+include_once 'Modele/M_Commande.php';
 
 
 
@@ -39,7 +40,7 @@ switch ($action) {
             $uc = 'inscription';
         } else {
             try {
-                $idNouveauClient = M_Client::creerClient($nom, $prenom, $mdp, $email, $adresse, $complement_adresse, $tel, $cp, $ville);
+                $id_nouveau_client = M_Client::creerClient($nom, $prenom, $mdp, $email, $adresse, $complement_adresse, $tel, $cp, $ville);
                 // afficheMessage("Félicitations, votre compte a bien été créé");
 
             } catch (\PDOException $e) {
@@ -49,7 +50,7 @@ switch ($action) {
             }
         }
         $_SESSION['prenom_client'] = $prenom;
-        $_SESSION['id_client'] = $idNouveauClient;
+        $_SESSION['id_client'] = $id_nouveau_client;
 
 header('location: index.php?uc=bienvenue&action=consulter');
         break;
@@ -60,10 +61,10 @@ header('location: index.php?uc=bienvenue&action=consulter');
                 $mdp = filter_input(INPUT_POST, 'mdp');
 
                 if (M_Client::clientExiste($email) && (M_Client::checkMdp($email, $mdp))) {
-                    $idClient = $_SESSION['id_client'] = M_Client::checkMdp($email, $mdp);
+                    $id_client = $_SESSION['id_client'] = M_Client::checkMdp($email, $mdp);
 
                     // var_dump($_SESSION);
-                    $prenom = $_SESSION['prenom_client'] = M_Client::getPrenom($idClient);
+                    $prenom = $_SESSION['prenom_client'] = M_Client::getPrenom($id_client);
                     
                     // afficheMessage("Bienvenue $prenom");
                     $uc = 'bienvenue';
@@ -88,7 +89,7 @@ header('location: index.php?uc=bienvenue&action=consulter');
             }
 
             if (isset($annul)) {
-                $prenom = $_SESSION['prenom_client'] = M_Client::getPrenom($idClient);
+                $prenom = $_SESSION['prenom_client'] = M_Client::getPrenom($id_client);
                 $_SESSION['message'] = "Bienvenue de nouveau, $prenom ;)";
                 header('location: index.php?uc=messages');
                 var_dump($_SESSION['id_client']);
@@ -96,12 +97,24 @@ header('location: index.php?uc=bienvenue&action=consulter');
             }
         }
     case 'consulter':
-        $idClient = $_SESSION['id_client'];
-        $data = M_Client::chercherClient($idClient);
+        $id_client = intval($_SESSION['id_client']);
+        $data = M_Client::chercherClient($id_client);
+        $commandes = M_Commande::trouveLesCommandes($id_client);
+        // var_dump($commandes);
+        foreach ($commandes as $commande) {
+            foreach ($commande as $id_commande) {
+                $infos_commandes[] = M_Commande::trouveLesInfos($id_commande);
+                $montants_commandes[] = M_Commande::calculeLeMontant($id_commande);
+            }
+        }
+        $tableau_commandes = recapCommandes($infos_commandes, $montants_commandes);
+        // var_dump($infos_commandes);
+        // var_dump($montants_commandes);
+        // var_dump($tableau_commandes);
         break;
     case 'modifier':
         $idClient = $_SESSION['id_client'];
-        $data = M_Client::chercherClient($idClient);
+        $data = M_Client::chercherClient($id_client);
         break;
 
 

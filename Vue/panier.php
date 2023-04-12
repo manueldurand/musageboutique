@@ -9,11 +9,11 @@
 
 
       <?php
-      if (isset($_SESSION['panier']) && (!empty($articlesPanier))) {
+      if (isset($_SESSION['panier']) && (!empty($articles_panier))) {
       ?>
          <table class="panier-articles">
             <tbody>
-               <?php foreach ($articlesPanier as $article) : ?>
+               <?php foreach ($articles_panier as $article) : ?>
                   <tr scope="row" class="detail-article">
                      <td>
                         <img src="assets/img/comp/<?= $article[4] ?>" class="border" alt="image_produit">
@@ -29,7 +29,7 @@
          </table>
          <div class="panier-prix">
             <?php $sous_total = 0;
-            foreach ($articlesPanier as $article) {
+            foreach ($articles_panier as $article) {
                $sous_total += floatval($article[5] * $article[6]);
             }
 
@@ -37,15 +37,15 @@
             <p><span class="aligne-gauche">Sous-total : </span><span class="aligne-droite"><?= number_format($sous_total, '2', '.', '') ?> €</span>
             </p>
             <p><span class="aligne-gauche">Livraison : </span><span class="aligne-droite"><?php if ($sous_total < 50) {
-                                                                                             echo $prixLivraison = 2.99;
+                                                                                             echo $prix_livraison = 2.99;
                                                                                           } else {
                                                                                              echo 'offerte';
-                                                                                             $prixLivraison = 0;
+                                                                                             $prix_livraison = 0;
                                                                                           } ?> €</span></p>
-            <p><span class="aligne-gauche">Total : </span><span class="aligne-droite"><?= number_format($sous_total + $prixLivraison, '2', '.', ''); ?> €</span></p>
+            <p><span class="aligne-gauche">Total : </span><span class="aligne-droite"><?= number_format($sous_total + $prix_livraison, '2', '.', ''); ?> €</span></p>
 
             <form action="index.php?uc=commander&action=passerCommande" method="POST">
-               <input type="hidden" name="prixTotal" value="<?= $sous_total + $prixLivraison ?>">
+               <input type="hidden" name="prixTotal" value="<?= $sous_total + $prix_livraison ?>">
                <p>
                   <span class="aligne-gauche">Date de la livraison :</span>
                   <span class="aligne-droite">

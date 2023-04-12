@@ -309,6 +309,9 @@ footer {
   display: flex;
   justify-content: center;
 }
+.m-2 {
+  margin: 2em;
+}
 
 /* ------------------------------Page Panier-------------------*/
 .panier-container {
@@ -458,14 +461,17 @@ input[type="submit"] {
   text-align: center;
   padding: 2em;
 
-  width: 50%;
+  width: 100%;
 }
 .cadre-info {
   margin: 2em;
   padding: 2em 0;
-  width: 50%;
+  min-width: 300px;
   border: black 1px solid;
   background-color: var(--light_bg);
+}
+.cadre-commandes {
+  width: 75%;
 }
 
 

@@ -74,9 +74,9 @@
                 case 'livraison':
                     include 'Vue/livraison.php';
                     break;
-                case 'panierConfirmer':
-                    include 'Vue/panierConfirmer.php';
-                    break;
+                // case 'panierConfirmer':
+                //     include 'Vue/panierConfirmer.php';
+                //     break;
                 case 'inscription':
                     include 'Vue/inscription.php';
                     break;

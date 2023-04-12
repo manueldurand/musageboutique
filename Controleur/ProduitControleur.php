@@ -7,8 +7,8 @@ switch ($action) {
         $produits = M_Produit::trouveTousLesProduitsVisibles();
         break;
     case 'voir':
-            $idProduit = filter_input(INPUT_GET, 'idProduit');
-            $produit = M_Produit::trouveLeProduit($idProduit);
+            $id_produit = filter_input(INPUT_GET, 'produit');
+            $produit = M_Produit::trouveLeProduit($id_produit);
         break;
     case 'bouquets':
         $produits = M_Produit::trouveTousLesBouquetsVisibles();
@@ -22,29 +22,46 @@ switch ($action) {
         break;
     case 'ajoutPanier':
         if(isset($_POST['ajouter'])){
-                $idProduit = filter_input(INPUT_GET, 'produit');
+                $id_produit = intval(filter_input(INPUT_GET, 'produit'));
                 $quantite = filter_input(INPUT_POST, 'quantite');
-               // Initialiser le panier client en session s'il n'existe pas déjà
+               // Initialise le panier client en session s'il n'existe pas déjà
             if (!isset($_SESSION['panier'])) {
-                $_SESSION['panier'] = array();
+                $_SESSION['panier'] = [];
             }
             }
-            $produit = M_Produit::trouveLeProduit($idProduit);
+            $produit = M_Produit::trouveLeProduit($id_produit);
+            $lesIdDuPanier = trouveLesIdDuPanier();
+            var_dump($lesIdDuPanier);
+            var_dump($id_produit);
             $stock = $produit['stock'];
+            foreach ($lesIdDuPanier as $index => $id_article) {
+                if ($id_produit == $id_article) {
+                    if($quantite + $_SESSION['panier'][$index][6] > $stock) {
+                        $_SESSION['message'] = "nous sommes désolés, nous ne pouvons ajouter de commande, il ne nous reste que $stock exemplaires en stock";
+                        header('location: index.php?uc=messages');
+                    } else {
+                        $_SESSION['panier'][$index][6] += $quantite;
+                        $_SESSION['message'] = "quantité mise à jour";
+                        header('location: index.php?uc=messages');
+                    }
+                    break;
+                }
+            }
             if($quantite > $stock) {
                 $_SESSION['message'] = "nous sommes désolés, il ne nous reste que $stock exemplaires en stock";
                 header('location: index.php?uc=messages');
-
-            } else {
-         $nomProduit = $produit['nom_plante'];
-        $couleurProduit = $produit['nom_couleur'];
-        $uniteProduit = $produit['type_unite'];
-        $prix = $produit['prix'];
-        $image = $produit['image1'];
-             
-        ajouterAuPanier($idProduit, $nomProduit, $couleurProduit, $uniteProduit, $image, $prix, $quantite) ;
-        $produit = M_Produit::trouveLeProduit($idProduit);
-        var_dump($_SESSION['panier']);
+                
+            } else if (!in_array($id_produit, $lesIdDuPanier)) {
+                $nom_produit = $produit['nom_plante'];
+                $couleur_produit = $produit['nom_couleur'];
+                $unite_produit = $produit['type_unite'];
+                $prix = $produit['prix'];
+                $image = $produit['image1'];
+                
+                ajouterAuPanier($id_produit, $nom_produit, $couleur_produit, $unite_produit, $image, $prix, $quantite) ;
+                $produit = M_Produit::trouveLeProduit($id_produit);
+                $_SESSION['message'] = "produit ajouté au panier";
+                header('location: index.php?uc=messages');
         break;               
             }
 

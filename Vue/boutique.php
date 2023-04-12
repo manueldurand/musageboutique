@@ -47,7 +47,7 @@
         <?php 
         foreach ($produits  as $produit) : ?>
             <div class="card-produit">
-                <a href="index.php?uc=voirProduit&action=voir&idProduit=<?= $produit['idProduit'] ?>">
+                <a href="index.php?uc=voirProduit&action=voir&produit=<?= $produit['id_produit'] ?>">
                     <div class="card-image">
                         <img class="image-card" src="assets/img/comp/<?= $produit['image1'] ?>" alt="photo de fleur">
                     </div>

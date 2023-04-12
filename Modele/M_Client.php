@@ -132,7 +132,7 @@ class M_Client
      * @param int $idClient
      * @return void
      */
-    public static function chercherClient($idClient)
+    public static function chercherClient($id_client)
     {
         $conn = AccesDonnees::getPdo();
         $req = "SELECT nom_client, prenom_client, email_client, telephone, adresse, complement_adresse, code_postal, ville ";
@@ -140,7 +140,7 @@ class M_Client
         $req .= "JOIN lafleur_code_postal ON lafleur_code_postal.id_code_postal = lafleur_adresses.code_postal_id ";
         $req .= "JOIN lafleur_villes ON lafleur_villes.id_ville = lafleur_adresses.ville_id WHERE lafleur_clients.id_client = :id";
         $statement = $conn->prepare($req);
-        $statement->bindParam(':id', $idClient);
+        $statement->bindParam(':id', $id_client);
         $statement->execute();
         $data = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $data;

@@ -12,6 +12,7 @@
 </head>
 <body>
     <!-- ---------------------------------EN-TETE LOGO + PANIER + LIENS INSCRIPTION CONNEXION -------------- -->
+    <div class="page-container">  
     <header>
         <div id="top_page">
             <img class="vignette" src="assets/img/comp/rue_lourmarin_carre.jpg" alt="rue Lourmarin">
@@ -122,8 +123,16 @@
 
         ?>
     </main>
+    </div>
+    <footer>
+        <div class="centre foot">
+            <p class="foot"> &copy;Lafleur-Lourmarin 2023</p></div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script defer src="Js/main.js"></script>
+
 </body>
 </html>

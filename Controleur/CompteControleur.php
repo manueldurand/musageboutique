@@ -65,10 +65,12 @@ header('location: index.php?uc=bienvenue&action=consulter');
                     // var_dump($_SESSION);
                     $prenom = $_SESSION['prenom_client'] = M_Client::getPrenom($idClient);
                     
-                    afficheMessage("Bienvenue $prenom");
+                    // afficheMessage("Bienvenue $prenom");
                     $uc = 'bienvenue';
                     break;
-                } else afficheMessage('Erreur d\'authentification, veuillez esssayer à nouveau');
+                } else $_SESSION['message'] = "Erreur d'authentification, veuillez esssayer à nouveau";
+                header('location: index.php?uc=messages');
+
                 break;
             } else afficheMessage('Erreur');
             break;
@@ -86,8 +88,10 @@ header('location: index.php?uc=bienvenue&action=consulter');
             }
 
             if (isset($annul)) {
-                afficheMessage('welcome back, ' . $_SESSION['prenom_client'] . ' !');
-                $uc = '';
+                $prenom = $_SESSION['prenom_client'] = M_Client::getPrenom($idClient);
+                $_SESSION['message'] = "Bienvenue de nouveau, $prenom ;)";
+                header('location: index.php?uc=messages');
+                var_dump($_SESSION['id_client']);
                 break;
             }
         }

@@ -33,22 +33,25 @@ class M_Commande
 
             foreach ($articlesPanier as $article) {
                 $req1 = "INSERT INTO lafleur_commande_produits(commande_id, produit_id, quantite) VALUES (:c_id, :p_id, :q)";
-                $stmt = $conn->prepare($req1);
-                $stmt->bindParam(':c_id', $idCommande);
-                $stmt->bindParam(':p_id', $article[0]);
-                $stmt->bindParam(':q', $article[6]);
-                $stmt->execute();
+                $stmt1 = $conn->prepare($req1);
+                $stmt1->bindParam(':c_id', $idCommande);
+                $stmt1->bindParam(':p_id', $article[0]);
+                $stmt1->bindParam(':q', $article[6]);
+                $stmt1->execute();
 
 
-                $req2 = "UPDATE lafleur_produits SET stock = stock - $article[6] WHERE idProduit = :id";
-                $stmt = $conn->prepare($req2);
-                $stmt->bindParam(':id', $article[0]);
-                $stmt->execute();
+                $req2 = "UPDATE lafleur_produits SET stock = stock - $article[6], date_m_a_j = :d WHERE idProduit = :id";
+                $stmt2 = $conn->prepare($req2);
+                $stmt2->bindParam(':id', $article[0]);
+                $stmt2->bindParam(':d', $date_commande);
+                $stmt2->execute();
             }
-            $req3 = "UPDATE lafleur_lots SET quantite = quantite - 1 WHERE id_lot = :id";
-            $stmt = $conn->prepare($req3);
-            $stmt->bindParam(':id', $lot_id);
-            $stmt->execute();
+            $req3 = "UPDATE lafleur_lots SET quantite = quantite - 1, m_a_j = :d2 WHERE id_lot = :id";
+            $stmt3 = $conn->prepare($req3);
+            $stmt3->bindParam(':id', $lot_id);
+            $stmt3->bindParam(':d2', $date_commande);
+            $stmt3->execute();
+            
             $conn->commit();
             return $idCommande;
         } catch (PDOException $e) {

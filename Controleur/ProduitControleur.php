@@ -30,17 +30,24 @@ switch ($action) {
             }
             }
             $produit = M_Produit::trouveLeProduit($idProduit);
+            $stock = $produit['stock'];
+            if($quantite > $stock) {
+                $_SESSION['message'] = "nous sommes désolés, il ne nous reste que $stock exemplaires en stock";
+                header('location: index.php?uc=messages');
 
-        $nomProduit = $produit['nom_plante'];
+            } else {
+         $nomProduit = $produit['nom_plante'];
         $couleurProduit = $produit['nom_couleur'];
         $uniteProduit = $produit['type_unite'];
         $prix = $produit['prix'];
         $image = $produit['image1'];
              
         ajouterAuPanier($idProduit, $nomProduit, $couleurProduit, $uniteProduit, $image, $prix, $quantite) ;
-        afficheMessage("Article ajouté au panier !");
         $produit = M_Produit::trouveLeProduit($idProduit);
-        break;
+        var_dump($_SESSION['panier']);
+        break;               
+            }
+
 
 
 }

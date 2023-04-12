@@ -49,10 +49,10 @@
                <p>
                   <span class="aligne-gauche">Date de la livraison :</span>
                   <span class="aligne-droite">
-                     <input class="date-form" type="number" name="jour" value="<?php echo date('d', strtotime('+1 day')); ?>" min="1" max="31" step="1" size="2" />
-                     <input class="date-form" type="number" name="mois" value="<?php echo date('m'); ?>" min="1" max="12" step="1" size="2" />
+                     <input class="date-form" type="number" name="jour" value="<?php echo date('d', strtotime('+1 day')); ?>" min="1" max="31" step="1" size="2"  onchange="this.value = this.value.replace(/^(\d)$/, '0$1')"/>
+                     <input class="date-form" type="number" name="mois" value="<?php echo date('m'); ?>" min="1" max="12" step="1" size="2" onchange="this.value = this.value.replace(/^(\d)$/, '0$1')" />
                      <input class="date-form" type="number" name="annee" value="<?php echo date('Y'); ?>" step="1" size="5" />
-                  </span>
+                  </span><br>
                <p>
                   <span class="aligne-gauche">Heure de la livraison :</span>
                   <span class="aligne-droite">
@@ -74,7 +74,7 @@
                         <option value="30">30</option>
                      </select>
                   </span>
-               </p>
+               </p><br>
   <?php if(isset($_SESSION['loterie']) && $_SESSION['loterie']['idLot']>0): ?>
    <p>
  <span class="aligne-gauche">Loterie "Fête des mères" :</span>

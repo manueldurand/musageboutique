@@ -90,7 +90,7 @@ function evaluerLoterie() {
       if (color === "bleu" || color === "blanc" || color === "rouge") {
         return {
           message: `Deux ${color} ! vous gagnez un sac Lafleur!`,
-          idLot: 1,
+          idLot: 2,
           counter: jackpotCounter,
         }
       }else if (color === "lotus") {
@@ -135,19 +135,7 @@ function envoyerResultat (resultat) {
 
 }
 
-// function envoyerResultat(resultat) {
-//   console.log(resultat)
-//   $.ajax({
-//     type: "POST",
-//     url: "Controleur/LoterieControleur.php",
-//     withCredentials: true,
-//     data: {resultat: resultat},
-//     success: function(response) {
-//         console.log(response);
-//         RESULTAT.textContent = response;
-//     }
-//   })
-// }
+
 // La première ligne utilise la méthode querySelectorAll pour sélectionner tous les éléments de la page HTML qui ont la classe CSS "img". Cela renvoie un tableau de tous les éléments correspondants.
 
 // La deuxième ligne utilise la méthode forEach pour boucler sur chaque élément du tableau renvoyé par querySelectorAll. Pour chaque élément, une fonction est exécutée.

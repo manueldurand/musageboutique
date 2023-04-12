@@ -34,6 +34,8 @@ switch ($action) {
                 supprimerPanier();
                 $articlesPanier = null;
                 $_SESSION['panier'] = [];
+                $_SESSION['loterie'] = [];
+                $_SESSION['lot'] = [];
                 $_SESSION['message'] = "Votre commmande n° $idCommande a bien été enregistrée, merci pour votre confiance";
                 header('Location: index.php?uc=messages');
                 
@@ -103,7 +105,7 @@ switch ($action) {
             // var_dump($articlesPanier);
             $maxId = null; // Initialisation de la variable $maxId à null
             $resultatsLoterie = $_SESSION['resultatsLoterie'];
-            var_dump($resultatsLoterie);
+            // var_dump($resultatsLoterie);
             foreach ($resultatsLoterie as $tuple) {
                 $idLot = $tuple[1]; // Récupération de l'id de loterie du tuple actuel
                 if ($idLot > $maxId) { // Comparaison de l'id de loterie avec $maxId

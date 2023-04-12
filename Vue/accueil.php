@@ -13,7 +13,7 @@
         </p>
     </div>
     <div class="bandeau-images">
-        <div class="cote-bandeau">
+    <div class="cote-bandeau">
             <img src="assets/img/comp/cmp_fleuriste_lys.jpg" class="image-cote" alt="photo de lys en gros plan">
         </div>
         <div>

@@ -32,9 +32,11 @@
             <li class="item">
             <a class="btn" href="index.php?uc=boutique&action=bouquets">Bouquets</a></li>
             <li class="item">
-            <a class="btn" href="#">Fleurs séchées</a></li>
+            <a class="btn" href="index.php?uc=boutique&action=sec">Fleurs séchées</a></li>
             <li class="item">
-            <a class="btn" href="#">Orchidées</a></li>
+            <a class="btn" href="index.php?uc=boutique&action=orchidees">Orchidées</a></li>
+            <li class="item">
+            <a class="btn" href="index.php?uc=boutique&action=tousLesProduits">Voir toute la boutique</a></li>
         </ul>
     </div>
     <div class="boutique-container">

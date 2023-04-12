@@ -17,12 +17,18 @@ a {
   color: black;
 }
 body {
+  margin: 0;
   font-family: "Recursive", sans-serif;
+  height: 100vh;
+  position: relative;
 }
 header {
   margin-top: 20px;
   display: flex;
   justify-content: space-evenly;
+}
+.page-container {
+  min-height: calc(100vh - 60px);
 }
 .vignette {
   height: 130px;
@@ -96,6 +102,27 @@ nav {
 
 }
 
+/*---------------------------------------FOOTER ---------------------*/
+
+footer {
+  width: 100%;
+  height: 40px;
+  background-color: var(--main_color);
+  font-size: 0.7em;
+}
+.foot {
+  position: relative;
+  height: 40px;
+  margin-bottom: 0.5em;
+  display: flex;
+  align-items: flex-end;
+  color: var(--second_color_dark);
+}
+
+.mt-5 {
+  margin-top: 5em;
+}
+
 /* -----------------------------------------page accueil */
 
 .bandeau-images {
@@ -153,24 +180,26 @@ nav {
 
 .image-card {
   width: 200px;
+  height:200px
 }
 
 .card-nom {
   text-align: center;
 }
 .fake-aside {
-  width: 15%;
+  width: 20%;
 }
 .aside-menu {
   position: fixed;
-
+  overflow:scroll;
   width: 15%;
-  height:350px;
+  height:fit-content;
   margin-left: 4em;
-  margin-top: 5em;
+  margin-top: 3em;
   background: var(--light_bg);
   border-radius: 8px;
-  overflow: hidden;
+  font-size: 0.8em;
+  /* overflow: hidden; */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   scroll-behavior: smooth;
 }
@@ -186,7 +215,7 @@ nav {
 
 .aside-menu .sous-menu {
   background: var(--light_bg);
-  overflow: hidden;
+  overflow:scroll;
   max-height: 0;
   transition: max-height 0.8s ease-out;
   scroll-behavior: smooth;
@@ -194,7 +223,7 @@ nav {
 
 .aside-menu .sous-menu a {
   display: block;
-  padding: 0.5rem;
+  padding: 0.4rem;
   position: relative;
   scroll-behavior: smooth;
 }
@@ -379,6 +408,7 @@ td:nth-child(4) {
   margin-top: 40%;
 }
 .btn-container {
+  margin-top: 3em;
   width: 100%;
   display: flex;
   justify-content: center;

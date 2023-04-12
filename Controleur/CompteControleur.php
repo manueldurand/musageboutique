@@ -107,7 +107,9 @@ header('location: index.php?uc=bienvenue&action=consulter');
                 $montants_commandes[] = M_Commande::calculeLeMontant($id_commande);
             }
         }
-        $tableau_commandes = recapCommandes($infos_commandes, $montants_commandes);
+        if (!empty($infos_commandes)) {
+            $tableau_commandes = recapCommandes($infos_commandes, $montants_commandes);
+        }
         // var_dump($infos_commandes);
         // var_dump($montants_commandes);
         // var_dump($tableau_commandes);

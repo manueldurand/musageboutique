@@ -36,6 +36,7 @@ switch ($action) {
                 $_SESSION['panier'] = [];
                 $_SESSION['loterie'] = [];
                 $_SESSION['lot'] = [];
+                $_SESSION['loterie'] = [];
                 $_SESSION['message'] = "Votre commmande n° $id_commande a bien été enregistrée, merci pour votre confiance";
                 header('Location: index.php?uc=messages');
                 

@@ -46,7 +46,7 @@
                         <th>livrée le :</th>
                     </tr>
                 </thead>
-                <?php if(isset($tableau_commandes)) : ?>
+                <?php if(!empty($tableau_commandes)) : ?>
                     <?php foreach ($tableau_commandes as $index => $commande) : ?>
                     <tr>
                         <td><?= date('d/m/Y H:i', strtotime($commande['date_commande']) ) ?></td>

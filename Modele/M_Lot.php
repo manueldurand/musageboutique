@@ -9,5 +9,18 @@ Class M_Lot {
         $stmt->bindParam(':id', $id);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
-    }   
+    }  
+    
+    public static function verifieStockLot($id) {
+        $test = false;
+        $conn = AccesDonnees::getPdo();
+        $stmt = $conn->prepare("SELECT quantite FROM lafleur_lots WHERE lafleur_lots.id_lot = :id");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        if($stmt->fetch()>0) {
+            $test = true;
+        };
+        return $test;
+
+    }
 }

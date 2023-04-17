@@ -11,7 +11,7 @@ class M_Commande
      * @param datetime $date_livraison_souhaitee
      * @param int $client_id
      * @param int $lot_id (gain de la loterie si il y a)
-     * @param enum $etat_commande
+     * @param string $etat_commande
      * @param array $articlesPanier as id_produit / quantite
      * @return void
      */
@@ -32,7 +32,7 @@ class M_Commande
             $id_commande = $conn->lastInsertId();
 
             foreach ($articles_panier as $article) {
-                $req1 = "INSERT INTO lafleur_commande_produits(commande_id, produit_id, quantite) VALUES (:c_id, :p_id, :q)";
+                $req1 = "INSERT INTO lafleur_commande_produit(commande_id, produit_id, quantite) VALUES (:c_id, :p_id, :q)";
                 $stmt1 = $conn->prepare($req1);
                 $stmt1->bindParam(':c_id', $id_commande);
                 $stmt1->bindParam(':p_id', $article[0]);
@@ -113,8 +113,8 @@ class M_Commande
     public static function calculeLeMontant($id) {
         $montant = 0;
         $conn = AccesDonnees::getPdo();
-        $req = "SELECT lafleur_produits.prix * lafleur_commande_produits.quantite as montant_produit FROM lafleur_commande_produits ";
-        $req .= "JOIN lafleur_produits ON lafleur_produits.id_produit = lafleur_commande_produits.produit_id WHERE lafleur_commande_produits.commande_id = :id";
+        $req = "SELECT lafleur_produits.prix * lafleur_commande_produit.quantite as montant_produit FROM lafleur_commande_produit ";
+        $req .= "JOIN lafleur_produits ON lafleur_produits.id_produit = lafleur_commande_produit.produit_id WHERE lafleur_commande_produit.commande_id = :id";
         $stmt = $conn->prepare($req);
         $stmt->bindParam(':id', $id);
         $stmt->execute();

@@ -1,12 +1,30 @@
 <?php
 session_start();
 
+include_once 'Modele/M_Lot.php';
+
+
+
 
     
     // Récupération des données envoyées via la requête AJAX
     $message = $_POST['message'];
     $idLot = $_POST['idLot'];
     $counter = $_POST['counter'];
+
+    //test si le lot est en stock 
+
+    //   if (M_Lot::verifieStockLot($idLot)) {
+    //     $idLot = $idLot;
+    //   }  
+    //   else {
+    //     while(($idLot>1) && (!M_Lot::verifieStockLot($idLot-1))) {
+    //         $idLot--;
+    //     } 
+    // };
+
+
+
  
 
     $_SESSION['loterie'] = array(

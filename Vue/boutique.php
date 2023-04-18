@@ -47,13 +47,13 @@
         <?php 
         foreach ($produits  as $produit) : ?>
             <div class="card-produit">
-                <a href="index.php?uc=voirProduit&action=voir&produit=<?= $produit['id_produit'] ?>">
+                <a href="index.php?uc=voirProduit&action=voir&produit=<?= $produit['id'] ?>">
                     <div class="card-image">
                         <img class="image-card" src="assets/img/comp/<?= $produit['image1'] ?>" alt="photo de fleur">
                     </div>
                     <div class="card-nom">
                         <p><?= $produit['nom_plante']." ". $produit['nom_couleur'] ?></p>
-                        <p><?= $produit['type_unite']?></p>
+                        <p><?= $produit['musage_type_unite']?></p>
                         <p><?= $produit['prix'] ?> €</p>
                     </div>
                 </a>

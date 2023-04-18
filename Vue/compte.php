@@ -20,7 +20,7 @@
             Code Postal: <?= $data[0]['code_postal'] ?>
         </p>
         <p>
-            Ville: <?= $data[0]['ville'] ?>
+            Ville: <?= $data[0]['nom_ville'] ?>
         </p>
         <p>
             Email: <?= $data[0]['email_client'] ?>

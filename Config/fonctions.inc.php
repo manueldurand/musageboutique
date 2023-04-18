@@ -79,7 +79,7 @@ function recapCommandes($infos_commandes, $montants_commandes)
             $tableau_commandes[] = [
                 'date_commande' => $detail['date_commande'],
                 'livraison_souhaitee' => $detail['livraison_souhaitee'],
-                'nom_lot' => M_Lot::getLot($detail['lot_id']),
+                'nom_lot' => M_Lot::getLot($detail['lot_id_id']),
                 'date_livraison' => $detail['date_livraison'],
                 'etat_commande' => $detail['etat_commande'],
                 'montant_commande' => $montants_commandes[$index],

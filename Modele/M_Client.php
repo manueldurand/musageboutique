@@ -157,7 +157,7 @@ class M_Client
     public static function clientExiste($email): bool
     {
         $conn = AccesDonnees::getPdo();
-        $req = 'SELECT id_client FROM musage_clients ';
+        $req = 'SELECT id FROM musage_clients ';
         $req .= 'WHERE email_client = :login';
         $stmt = $conn->prepare($req);
         $stmt->bindParam(":login", $email);

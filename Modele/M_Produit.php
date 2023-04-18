@@ -54,7 +54,7 @@ class M_Produit {
         $request = "SELECT musage_produits.id, nom_plante, nom_couleur, musage_type_unite, prix, stock, musage_produits.description, image1, image2 FROM musage_produits ";
         $request .= "JOIN musage_type_plante ON musage_type_plante.id = musage_produits.plante_id_id ";
         $request .= "JOIN musage_couleurs ON musage_couleurs.id = musage_produits.couleur_id_id ";
-        $request .= "JOIN musage_unite ON musage_unite.id = musage_produits.unite_id_id WHERE musage_produiits.id = :id";
+        $request .= "JOIN musage_unite ON musage_unite.id = musage_produits.unite_id_id WHERE musage_produits.id = :id";
         $stmt = $conn->prepare($request);
         $stmt->bindParam(':id', $id);
         $stmt->execute();

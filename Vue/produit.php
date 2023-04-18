@@ -9,11 +9,11 @@
     </div>
     <div class="cadre-produit">
         <h2 class="nom-produit"><?= $produit['nom_plante']." ".$produit['nom_couleur'] ?></h2>
-        <h4><?= $produit['type_unite']?></h4>
+        <h4><?= $produit['musage_type_unite']?></h4>
         <p class="description-produit">
             <?= $produit['description'] ?>
         </p>
-        <form class="ajouter-panier" method="POST" action="index.php?uc=panierConfirmer&action=ajoutPanier&produit=<?= $produit['id_produit'] ?>">
+        <form class="ajouter-panier" method="POST" action="index.php?uc=panierConfirmer&action=ajoutPanier&produit=<?= $produit['id'] ?>">
             <label for="quantite">Quantité
             <input type="number" size="2" value="1" min="1" max="50" name="quantite" id="quantite"></label>
             <input type="hidden" value="<?=$produit?>" name="produit">

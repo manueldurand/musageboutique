@@ -67,21 +67,21 @@ function evaluerLoterie() {
       if (color === "lotus") {
         return {
           message: "Trois lotus ! vous gagnez un bouquet !",
-          idLot: 6,
+          idLot: 5,
           counter: jackpotCounter,
         }
       }
       else if (color === "bleu" || color === "rouge" || color === "blanc"){
         return {
         message: `Trois ${color}! une rose à offrir !`,
-          idLot: 5,
+          idLot: 4,
         counter: jackpotCounter,
       };
       }
       else if (color === "jaune") {
         return {
           message: "Trois jaunes ! un porte-clés !",
-          idLot: 4,
+          idLot: 3,
           counter: jackpotCounter,
         }
       }
@@ -90,20 +90,20 @@ function evaluerLoterie() {
       if (color === "bleu" || color === "blanc" || color === "rouge") {
         return {
           message: `Deux ${color} ! vous gagnez un sac Lafleur!`,
-          idLot: 3,
+          idLot: 2,
           counter: jackpotCounter,
         }
       }else if (color === "lotus") {
         return {
           message: "Deux lotus ! vous gagnez une rose !",
-          idLot: 5,
+          idLot: 4,
           counter: jackpotCounter,
         }
       }
       else if (color === "jaune") {
         return {
           message: "Deux jaunes ! vous gagnez un stylo !",
-          idLot: 2,
+          idLot: 1,
           counter: jackpotCounter,
         }
       }

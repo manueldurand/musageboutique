@@ -4,7 +4,7 @@
  * Classe d'accès aux données.
 
  * Utilise les services de la classe PDO
- * pour l'application lafleur
+ * pour l'application boutique-lafleur
  * Les attributs sont tous statiques,
  * les 4 premiers pour la connexion
  * $monPdo de type PDO
@@ -17,9 +17,9 @@
 class AccesDonnees {
 
     private static $serveur = 'mysql:host=localhost';
-    private static $bdd = 'dbname=lafleur3';
-    private static $user = 'root';
-    private static $mdp = '';
+    private static $bdd = 'dbname=musage';
+    private static $user = 'manuel';
+    private static $mdp = 'manuel2023';
 
     /**
      *

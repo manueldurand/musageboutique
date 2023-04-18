@@ -21,7 +21,7 @@ class M_Commande
         //début de la transaction d'enregistrent de la commande
         $conn->beginTransaction();
         try {
-            $req = "INSERT INTO lafleur_commandes(date_commande, livraison_souhaitee, client_id, lot_id, etat_commande) VALUES (:dc, :dl, :c_id, :l_id, :etat)";
+            $req = "INSERT INTO musage_commandes(date_commande, livraison_souhaitee, client_id_id, lot_id_id, etat_commande) VALUES (:dc, :dl, :c_id, :l_id, :etat)";
             $stmt = $conn->prepare($req);
             $stmt->bindParam(':dc', $date_commande);
             $stmt->bindParam(':dl', $date_livraison_souhaitee);
@@ -32,7 +32,7 @@ class M_Commande
             $id_commande = $conn->lastInsertId();
 
             foreach ($articles_panier as $article) {
-                $req1 = "INSERT INTO lafleur_commande_produit(commande_id, produit_id, quantite) VALUES (:c_id, :p_id, :q)";
+                $req1 = "INSERT INTO musage_commande_produit(commande_id_id, produit_id_id, quantite) VALUES (:c_id, :p_id, :q)";
                 $stmt1 = $conn->prepare($req1);
                 $stmt1->bindParam(':c_id', $id_commande);
                 $stmt1->bindParam(':p_id', $article[0]);
@@ -40,13 +40,13 @@ class M_Commande
                 $stmt1->execute();
 
 
-                $req2 = "UPDATE lafleur_produits SET stock = stock - $article[6], date_m_a_j = :d WHERE id_produit = :id";
+                $req2 = "UPDATE musage_produits SET stock = stock - $article[6], date_maj = :d WHERE id = :id";
                 $stmt2 = $conn->prepare($req2);
                 $stmt2->bindParam(':id', $article[0]);
                 $stmt2->bindParam(':d', $date_commande);
                 $stmt2->execute();
             }
-            $req3 = "UPDATE lafleur_lots SET quantite = quantite - 1, m_a_j = :d2 WHERE id_lot = :id";
+            $req3 = "UPDATE musage_lots SET quantite = quantite - 1, m_a_j = :d2 WHERE id = :id";
             $stmt3 = $conn->prepare($req3);
             $stmt3->bindParam(':id', $lot_id);
             $stmt3->bindParam(':d2', $date_commande);
@@ -68,7 +68,7 @@ class M_Commande
      */
     public static function trouveLesCommandes(int $id) {
         $conn = AccesDonnees::getPdo();
-        $req = "SELECT id_commande FROM lafleur_commandes WHERE client_id = :id";
+        $req = "SELECT id FROM musage_commandes WHERE client_id_id = :id";
         $stmt = $conn->prepare($req);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
@@ -83,8 +83,8 @@ class M_Commande
      */
     public static function trouveLesInfos(int $id) {
         $conn = AccesDonnees::getPdo();
-        $req = "SELECT date_commande, livraison_souhaitee, lot_id, date_livraison, etat_commande ";
-        $req .= "FROM lafleur_commandes WHERE id_commande = :id";
+        $req = "SELECT date_commande, livraison_souhaitee, lot_id_id, date_livraison, etat_commande ";
+        $req .= "FROM musage_commandes WHERE id = :id";
         $stmt = $conn->prepare($req);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
@@ -98,7 +98,7 @@ class M_Commande
      */
     public static function trouveLeLot(int $id) {
         $conn = AccesDonnees::getPdo();
-        $req = "SELECT nom_lot FROM lafleur_lots WHERE id_lot = :id";
+        $req = "SELECT nom_lot FROM musage_lots WHERE id = :id";
         $stmt = $conn->prepare($req);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
@@ -113,8 +113,8 @@ class M_Commande
     public static function calculeLeMontant($id) {
         $montant = 0;
         $conn = AccesDonnees::getPdo();
-        $req = "SELECT lafleur_produits.prix * lafleur_commande_produit.quantite as montant_produit FROM lafleur_commande_produit ";
-        $req .= "JOIN lafleur_produits ON lafleur_produits.id_produit = lafleur_commande_produit.produit_id WHERE lafleur_commande_produit.commande_id = :id";
+        $req = "SELECT musage_produits.prix * musage_commande_produit.quantite as montant_produit FROM musage_commande_produit ";
+        $req .= "JOIN musage_produits ON musage_produits.id = musage_commande_produit.produit_id_id WHERE musage_commande_produit.commande_id_id = :id";
         $stmt = $conn->prepare($req);
         $stmt->bindParam(':id', $id);
         $stmt->execute();

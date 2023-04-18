@@ -6,28 +6,28 @@
 class M_Produit {
 
     public static function trouveTousLesProduitsVisibles() {
-        $request = "SELECT id_produit, nom_plante, nom_couleur, type_unite, prix, lafleur_produits.description, image1, image2 FROM lafleur_produits ";
-        $request .= "JOIN lafleur_type_plante ON lafleur_type_plante.id_type_plante = lafleur_produits.plante_id ";
-        $request .= "JOIN lafleur_couleurs ON lafleur_couleurs.idcouleur = lafleur_produits.couleur_id ";
-        $request .= "JOIN lafleur_unite ON lafleur_unite.id_unite = lafleur_produits.unite_id WHERE stock > '0'";
+        $request = "SELECT musage_produits.id, nom_plante, nom_couleur, musage_type_unite, prix, musage_produits.description, image1, image2 FROM musage_produits ";
+        $request .= "JOIN musage_type_plante ON musage_type_plante.id = musage_produits.plante_id_id ";
+        $request .= "JOIN musage_couleurs ON musage_couleurs.id = musage_produits.couleur_id_id ";
+        $request .= "JOIN musage_unite ON musage_unite.id = musage_produits.unite_id_id WHERE stock > '0'";
         $res = AccesDonnees::query($request);
         return $res->fetchAll(PDO::FETCH_ASSOC);
     
     }
 
     public static function trouveTousLesBouquetsVisibles() {
-        $request = "SELECT id_produit, nom_plante, nom_couleur, type_unite, prix, lafleur_produits.description, image1, image2 FROM lafleur_produits ";
-        $request .= "JOIN lafleur_type_plante ON lafleur_type_plante.id_type_plante = lafleur_produits.plante_id ";
-        $request .= "JOIN lafleur_couleurs ON lafleur_couleurs.idcouleur = lafleur_produits.couleur_id ";
-        $request .= "JOIN lafleur_unite ON lafleur_unite.id_unite = lafleur_produits.unite_id WHERE stock > '0' AND unite_id = '3'";
+        $request = "SELECT musage_produits.id, nom_plante, nom_couleur, musage_type_unite, prix, musage_produits.description, image1, image2 FROM musage_produits ";
+        $request .= "JOIN musage_type_plante ON musage_type_plante.id = musage_produits.plante_id_id ";
+        $request .= "JOIN musage_couleurs ON musage_couleurs.id = musage_produits.couleur_id_id ";
+        $request .= "JOIN musage_unite ON musage_unite.id = musage_produits.unite_id_id WHERE stock > '0' AND unite_id_id = '3'";
         $res = AccesDonnees::query($request);
         return $res->fetchAll(PDO::FETCH_ASSOC);
     }
     public static function trouveLesFleursUniteVisibles() {
-        $request = "SELECT id_produit, nom_plante, nom_couleur, type_unite, prix, lafleur_produits.description, image1, image2 FROM lafleur_produits ";
-        $request .= "JOIN lafleur_type_plante ON lafleur_type_plante.id_type_plante = lafleur_produits.plante_id ";
-        $request .= "JOIN lafleur_couleurs ON lafleur_couleurs.idcouleur = lafleur_produits.couleur_id ";
-        $request .= "JOIN lafleur_unite ON lafleur_unite.id_unite = lafleur_produits.unite_id WHERE stock > '0' AND unite_id = '1' OR unite_id = '2'";
+        $request = "SELECT musage_produits.id, nom_plante, nom_couleur, musage_type_unite, prix, musage_produits.description, image1, image2 FROM musage_produits ";
+        $request .= "JOIN musage_type_plante ON musage_type_plante.id = musage_produits.plante_id_id ";
+        $request .= "JOIN musage_couleurs ON musage_couleurs.id = musage_produits.couleur_id_id ";
+        $request .= "JOIN musage_unite ON musage_unite.id = musage_produits.unite_id_id WHERE stock > '0' AND unite_id_id = '1' OR unite_id_id = '2'";
         $res = AccesDonnees::query($request);
         return $res->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -39,10 +39,10 @@ class M_Produit {
      */
     public static function trouveLaCouleur($id) {
         $conn = AccesDonnees::getPdo();
-        $request = "SELECT id_produit, nom_plante, nom_couleur, type_unite, prix, lafleur_produits.description, image1, image2 FROM lafleur_produits ";
-        $request .= "JOIN lafleur_type_plante ON lafleur_type_plante.id_type_plante = lafleur_produits.plante_id ";
-        $request .= "JOIN lafleur_couleurs ON lafleur_couleurs.idcouleur = lafleur_produits.couleur_id ";
-        $request .= "JOIN lafleur_unite ON lafleur_unite.id_unite = lafleur_produits.unite_id WHERE stock > '0' AND couleur_id= :c ";
+        $request = "SELECT musage_produits.id, nom_plante, nom_couleur, musage_type_unite, prix, musage_produits.description, image1, image2 FROM musage_produits ";
+        $request .= "JOIN musage_type_plante ON musage_type_plante.id = musage_produits.plante_id_id ";
+        $request .= "JOIN musage_couleurs ON musage_couleurs.id = musage_produits.couleur_id_id ";
+        $request .= "JOIN musage_unite ON musage_unite.id = musage_produits.unite_id_id WHERE stock > '0' AND couleur_id_id= :c ";
         $stmt = $conn->prepare($request);
         $stmt->bindParam(':c', $id);
         $stmt->execute();
@@ -51,10 +51,10 @@ class M_Produit {
 
     public static function trouveLeProduit($id) {
         $conn = AccesDonnees::getPdo();
-        $request = "SELECT id_produit, nom_plante, nom_couleur, type_unite, prix, stock, lafleur_produits.description, image1, image2 FROM lafleur_produits ";
-        $request .= "JOIN lafleur_type_plante ON lafleur_type_plante.id_type_plante = lafleur_produits.plante_id ";
-        $request .= "JOIN lafleur_couleurs ON lafleur_couleurs.idcouleur = lafleur_produits.couleur_id ";
-        $request .= "JOIN lafleur_unite ON lafleur_unite.id_unite = lafleur_produits.unite_id WHERE id_produit = :id";
+        $request = "SELECT musage_produits.id, nom_plante, nom_couleur, musage_type_unite, prix, stock, musage_produits.description, image1, image2 FROM musage_produits ";
+        $request .= "JOIN musage_type_plante ON musage_type_plante.id = musage_produits.plante_id_id ";
+        $request .= "JOIN musage_couleurs ON musage_couleurs.id = musage_produits.couleur_id_id ";
+        $request .= "JOIN musage_unite ON musage_unite.id = musage_produits.unite_id_id WHERE musage_produiits.id = :id";
         $stmt = $conn->prepare($request);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
@@ -63,7 +63,7 @@ class M_Produit {
     }
     public static function getNom($id) {
         $conn = AccesDonnees::getPdo();
-        $stmt = $conn->prepare("SELECT nom_produit FROM lafleur_produits WHERE lafleur_produits.id_produit = :id");
+        $stmt = $conn->prepare("SELECT nom_produit FROM musage_produits WHERE musage_produits.id = :id");
         $stmt->bindParam(':id', $id);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -71,7 +71,7 @@ class M_Produit {
 
     public static function getPrix($id) {
         $conn = AccesDonnees::getPdo();
-        $stmt = $conn->prepare("SELECT prix FROM lafleur_produits WHERE lafleur_produits.id_produit = :id");
+        $stmt = $conn->prepare("SELECT prix FROM musage_produits WHERE musage_produits.id = :id");
         $stmt->bindParam(':id', $id);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -79,7 +79,7 @@ class M_Produit {
 
     public static function getImage($id) {
         $conn = AccesDonnees::getPdo();
-        $stmt = $conn->prepare("SELECT image FROM lafleur_produits WHERE lafleur_produits.id_produit = :id");
+        $stmt = $conn->prepare("SELECT image FROM musage_produits WHERE musage_produits.id = :id");
         $stmt->bindParam(':id', $id);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);

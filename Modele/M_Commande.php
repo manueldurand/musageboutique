@@ -120,7 +120,7 @@ class M_Commande
         $stmt->execute();
         while ($row = $stmt->fetch()) {
             $montant += $row['montant_produit'];
-            if($montant>50) {
+            if($montant<50) {
                 $montant += 2.99;
             }
         }

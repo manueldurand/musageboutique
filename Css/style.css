@@ -30,6 +30,38 @@ header {
 .page-container {
   min-height: calc(100vh - 60px);
 }
+.m-2 {
+  margin: 2em;
+}
+.m-4 {
+  margin: 4em;
+}
+.marge-40 {
+  margin-top: 40%;
+}
+.marge-25 {
+  margin-top: 25%;
+}
+.mt-5 {
+  margin-top: 5em;
+}
+.w-50 {
+  width: 50%;
+}
+.centre {
+  display: flex;
+  justify-content: center;
+}
+.light-bg-50 {
+  background-color: var(--light_bg);
+  margin: 0 30%;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+}
+.line-height {
+  line-height: 2em;
+}
 .vignette {
   height: 130px;
   border-radius: 50%;
@@ -119,9 +151,7 @@ footer {
   color: var(--second_color_dark);
 }
 
-.mt-5 {
-  margin-top: 5em;
-}
+
 
 /* -----------------------------------------page accueil */
 
@@ -192,9 +222,9 @@ footer {
 .aside-menu {
   position: fixed;
   overflow:scroll;
-  width: 15%;
+  width: 10%;
   height:fit-content;
-  margin-left: 4em;
+  margin-left: 15em;
   margin-top: 3em;
   background: var(--light_bg);
   border-radius: 8px;
@@ -305,13 +335,6 @@ footer {
 .ajouter-panier {
   display: flex;
 }
-.centre {
-  display: flex;
-  justify-content: center;
-}
-.m-2 {
-  margin: 2em;
-}
 
 /* ------------------------------Page Panier-------------------*/
 .panier-container {
@@ -388,9 +411,6 @@ td:nth-child(4) {
   color: #7a7a7a;
   font-size: 0.75em;
 }
-.marge-25 {
-  margin-top: 25%;
-}
 
 /* -----------------------------PAGE INSCRIPTION------------------------------- */
 
@@ -407,8 +427,9 @@ td:nth-child(4) {
   flex-direction: column;
 }
 
-.marge-40 {
-  margin-top: 40%;
+.aside-connexion-container {
+  display: flex;
+  flex-direction: column;
 }
 .btn-container {
   margin-top: 3em;
@@ -424,6 +445,7 @@ td:nth-child(4) {
 
 .form-inscription input {
   display: block;
+  line-height: 1.5em;
 }
 .row {
   display: flex;
@@ -434,11 +456,15 @@ td:nth-child(4) {
 }
 input[name="adresse"] {
   height: 50px;
+
 }
 input[type="submit"] {
   display: flex;
   justify-content: center;
   text-align: center;
+}
+input{
+margin: 1em 0;
 }
 
 /* ----------------------------------- PAGE CONNEXION -------------------------------- */
@@ -450,6 +476,12 @@ input[type="submit"] {
 .titre {
   margin-top: 1.5em;
   margin-bottom: 1.5em;
+}
+.center-box {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /*---------------------------------------PAGE COMPTE -----------------------------*/
@@ -472,6 +504,19 @@ input[type="submit"] {
 }
 .cadre-commandes {
   width: 75%;
+}
+
+/*--------------------------------PAGE LIVRAISON --------------------------------------*/
+
+.fake-height {
+  height: 15%;
+  width: auto;
+}
+.form-cont {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 

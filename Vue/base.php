@@ -78,7 +78,9 @@
                 //     include 'Vue/panierConfirmer.php';
                 //     break;
                 case 'inscription':
-                    include 'Vue/inscription.php';
+                    if(isset($_SESSION['livraison']) && ($_SESSION['livraison'] === true)){
+                        include 'Vue/inscription.php';
+                    } else include 'Vue/livraison.php';
                     break;
                 case 'connexion':
                     include 'Vue/connexion.php';

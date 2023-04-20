@@ -1,10 +1,13 @@
 <section>
-    <h3 class="titre centre">
-        <?php if (isset($_SESSION['message'])) {
-            echo
-            $_SESSION['message'];
-        }  ?>
+    <div class="titre centre">
+
+        <h3 class="w-50 mt-5 line-height">
+            <?php if (isset($_SESSION['message'])) {
+                echo
+                $_SESSION['message'];
+            }  ?>
     </h3>
+</div>
     <div class="btn-container">
         <a href="index.php?uc=panier&action=infoPanier"><button class="btn centre">voir mon panier</button></a>
         <a href="index.php?uc=boutique&action=tousLesProduits"><button class="btn centre">voir la boutique</button></a>

@@ -1,7 +1,7 @@
 <section class="inscription-container">
 
-<div class="connexion-container">
-        <h3 class="marge-40">
+<div class="aside-connexion-container ">
+        <h3 class="marge-40 centre">
             Vous avez déjà un compte ?
         </h3>
         <div class="btn-container">
@@ -33,7 +33,7 @@
     <div class="col">
       <p>
         <label for="adresse">Adresse :</label>
-        <input type="text" name="adresse"required id="adresse">
+        <input type="textarea" name="adresse"required id="adresse">
       </p>
       <p>
         <label for="adresse">Complément :</label>
@@ -48,7 +48,7 @@
         <input type="int" name="cp" required id="code_postal">
       </p>
       <p>
-        <label for="ville">ville :</label>
+        <label for="ville">Ville :</label>
         <input type="text" name="ville" required id="ville">
       </p>
     </div>

@@ -42,7 +42,9 @@ switch ($uc) {
         include 'Controleur/LivraisonControleur.php';
         break;
     case 'inscription':
-        include 'Controleur/CompteControleur.php';
+        if(isset($_SESSION['livraison']) && ($_SESSION['livraison'] === true)){
+            include 'Controleur/CompteControleur.php';
+        } else include 'Controleur/LivraisonControleur.php';
         break;
     case 'connexion':
         include 'Controleur/CompteControleur.php';

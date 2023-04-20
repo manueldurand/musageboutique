@@ -1,17 +1,26 @@
 <section>
-    <h3 class="titre centre">VERIFIEZ SI NOUS POUVONS VOUS LIVRER</h3>
-    <form action="index.php?uc=livraison" method="POST">
-        <div class="btn-container">
+    <h3 class="titre centre">VERIFIONS AVANT TOUT SI NOUS POUVONS VOUS LIVRER</h3>
 
-            <label for="ville">Entrez votre commune : 
-                <input class="centre" type="text" name="ville" value="">
-                <input class="btn centre" type="submit" name="chercher" value="chercher">
-            </label>
+    <div class="light-bg-50 centre">
+        <div class="form-cont">
+            <form action="index.php?uc=livraison" method="POST">
+                <label for="ville">Entrez votre commune :
+                    <input type="text" class="centre" name="ville" value="">
+                </label>
+                <div class="btn-container">
+                    <input class="btn centre" type="submit" name="chercher" value="chercher">
+                </div>
+            </form>
         </div>
-    </form>
-    <p class="centre">
-        <?php if(isset($message)) {
-          echo  $message;
-        }  ?>
-    </p>
+        <div class="fake-height">
+            <p class=" centre reponse">
+                    <?php if (isset($message)) : ?>
+                    <?= $message; ?>
+                    <?php endif ?>
+                </p>
+        </div>
+    </div>
+
+
+
 </section>

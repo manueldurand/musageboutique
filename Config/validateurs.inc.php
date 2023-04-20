@@ -58,3 +58,19 @@ function validerFormulaire($champs)
 
     return $erreurs;
 }
+
+function verifieVille(string $ville) {
+    $test = false;
+    $listeLivraison = [
+        "LOURMARIN",
+        "LAURIS",
+        "CADENET",
+        "CUCURON",
+        "PUYVERT",
+        "VAUGINES",
+        "ANSOUIS",
+    ];
+    if(in_array(strtoupper($ville), $listeLivraison)) {
+        $test = true;
+    } return $test;
+}

@@ -18,11 +18,11 @@
             <img class="vignette" src="assets/img/comp/rue_lourmarin_carre.jpg" alt="rue Lourmarin">
         </div>
         <div class="titre_header">
-            <img src="assets/img/comp/logo.png" alt="logo lafleur">
+            <img src="assets/img/comp/logo.png"  class="logo" alt="logo lafleur">
         </div>
         <div class="aside_head">
             <div class="inside_aside">
-            <div class="icone_panier"><a href="index.php?uc=panier&action=infoPanier"><img src="assets/icones/icons8-shopping-cart-48.png" alt="panier"></a></div>
+            <div class="icone_panier"><a href="index.php?uc=panier&action=infoPanier"><img src="assets/icones/icons8-shopping-cart-48.png" class="icn-panier" alt="panier"></a></div>
             <p class="legende_aside">
             <?php if(!isset($_SESSION['id_client'])):?>
                 <a href="index.php?uc=inscription"><span>inscription</span></a><a href="index.php?uc=connexion"><span>connexion</span></a>
@@ -35,7 +35,7 @@
         </div>
     </header>
     <!-- ---------------------------------MENU BARRE DE NAVIGATION ----------------------- -->
-    <nav id="wrap">
+    <nav id="wrap" class="navbar">
         <ul class="menu">
             <li><a href="index.php?$uc=accueil">
               Accueil
@@ -112,23 +112,13 @@
                 case 'valideCommande':
                     include 'Vue/valideCommande.php';
                     break;
-                    
-                    
-                    
-
-
-
-
             }
-
-
-
         ?>
     </main>
     </div>
     <footer>
         <div class="centre foot">
-            <p class="foot"> &copy;Lafleur-Lourmarin 2023</p></div>
+            <p class="foot"> &copy;Lafleur-Lourmarin 2023 - crédits photos : <a href="https://www.pexels.com/fr-fr/">www.pexels.com</a></p></div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>

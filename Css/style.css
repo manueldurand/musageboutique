@@ -52,6 +52,9 @@ header {
   display: flex;
   justify-content: center;
 }
+.mobile {
+  display: none;
+}
 .light-bg-50 {
   background-color: var(--light_bg);
   margin: 0 30%;
@@ -591,7 +594,66 @@ margin: 1em 0;
     transform: translateY(-100px);
   }
   100% {
-    filter: blur(5px);
+    filter: blur(2px);
     transform: translateY(100px);
+  }
+}
+
+/*------------------------------------MEDIA QUERIES ---------------------------*/
+
+@media screen and (max-width:480px) {
+  *{
+    font-size: 12px;
+  }
+  .mobile {
+
+    text-align: center;
+  }
+  .vignette {
+    display: none;
+  }
+   .logo {
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    margin-left: 25vw;
+
+  } 
+  .legende_aside {
+    display: none;
+  }
+  .aside_head {
+    top: 10px;
+    left: 30px;
+    width: 25vw;
+  }
+  .titre_header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .icn-panier {
+    width: 75%;
+  }
+
+  /*--------------------------------Accueil-------------*/
+  .bandeau-images {
+    display:none ;
+    text-align: center;
+  }
+  .image-accueil {
+    display: block;
+   text-align: center;
+  }
+  .btn-accueil-mobile {
+    display: flex;
+    justify-content: center;
+  }
+  .navbar {
+    display:none ;
+  }
+  .bandeau-mobile{
+    background-color: var(--main_color);
+    padding: 1em;
   }
 }

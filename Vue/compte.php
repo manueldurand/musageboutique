@@ -60,6 +60,22 @@
                     <?php endif ?>
             </table>
         </div>
+        <div class="commandes-mobile">
+            <h4 class="titre centre">Mes Commandes :</h4>
+            <?php if (!empty($tableau_commandes)) : ?>
+                <?php foreach ($tableau_commandes as $commande) : ?>
+                    <ul>
+                        <li>date : <?= date('d/m/Y H:i', strtotime($commande['date_commande']) ) ?></li>
+                        <li>livraison prévue le : <?= date('d/m/Y H:i', strtotime($commande['livraison_souhaitee'])) ?></li>
+                        <li>montant : <?= $commande['montant_commande']  ?> €</li>
+                        <li>état : <?= $commande['etat_commande'] ?></li>
+                        <li>cadeau bonus : <?= $commande['nom_lot']['nom_lot'] ?></li>
+                        <li>livrée le : <?if(isset($commande['date_livraison'])) echo date('d/m/Y H:i', strtotime($commande['date_livraison'])) ?></li>
+                    </ul>
+                    <hr>
+                <?php endforeach ?>
+            <?php endif ?>
+        </div>
         
     </div>
 

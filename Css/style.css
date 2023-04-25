@@ -27,6 +27,9 @@ header {
   display: flex;
   justify-content: space-evenly;
 }
+#openBtn {
+  display: none;
+}
 .page-container {
   min-height: calc(100vh - 60px);
 }
@@ -189,10 +192,11 @@ footer {
   scroll-behavior: smooth;
 }
 .boutique-container {
-  width: 90%;
+  width: 80%;
   display: flex;
   flex-wrap: wrap;
   scroll-behavior: smooth;
+  margin-left: 1em;
 }
 .produits-container {
   margin-top: 3em;
@@ -221,11 +225,12 @@ footer {
 }
 .fake-aside {
   width: 20%;
+  margin-left: 3em;
 }
 .aside-menu {
   position: fixed;
   overflow:scroll;
-  width: 10%;
+  width: 12em;
   height:fit-content;
   margin-left: 15em;
   margin-top: 3em;
@@ -508,6 +513,9 @@ margin: 1em 0;
 .cadre-commandes {
   width: 75%;
 }
+.commandes-mobile {
+  display: none;
+}
 
 /*--------------------------------PAGE LIVRAISON --------------------------------------*/
 
@@ -598,12 +606,76 @@ margin: 1em 0;
     transform: translateY(100px);
   }
 }
+  /* Sidenav menu */
+  .sidenav {
+    height: 250px;
+    width: 150px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: -250px;
+    font-size: 14px;
+    background-color: var(--main_color);
+    padding-top: 60px;
+    transition: left 0.5s ease;
+    border-radius: 0 0 50%/10% 0;
+  }
+  
+  /* Sidenav menu links */
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
 
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  .sidenav a:first-of-type:hover {
+    color: black;
+  }
+  
+  .sidenav ul a:hover {
+    color: #111;
+    background-color: var(--dark_main_color);
+  }
+  
+  .sidenav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Active class */
+  .sidenav.active {
+    left: 0;
+  }
+  
+  /* Close btn */
+  .sidenav .close {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+  }
+  
+  /* Icône burger */
+  .burger-icon span {
+    display: block;
+    width: 35px;
+    height: 5px;
+    background-color: black;
+    margin: 6px 0;
+  }
+  
+  
 /*------------------------------------MEDIA QUERIES ---------------------------*/
 
 @media screen and (max-width:480px) {
   *{
     font-size: 12px;
+  }
+  #openBtn {
+    display: block;
   }
   .mobile {
 
@@ -616,7 +688,7 @@ margin: 1em 0;
     width: 50vw;
     display: flex;
     justify-content: center;
-    margin-left: 25vw;
+    margin-left: 15vw;
 
   } 
   .legende_aside {
@@ -635,6 +707,7 @@ margin: 1em 0;
   .icn-panier {
     width: 75%;
   }
+
 
   /*--------------------------------Accueil-------------*/
   .bandeau-images {
@@ -656,4 +729,76 @@ margin: 1em 0;
     background-color: var(--main_color);
     padding: 1em;
   }
+/*---------------------------------Boutique-------------------*/
+
+.aside-menu {
+  position: fixed;
+  overflow:scroll;
+  width: 20%;
+  height:fit-content;
+  margin-left: 3em;
+  margin-top: 13em;
+  background: var(--light_bg);
+  border-radius: 8px;
+  font-size: 0.8em;
+  /* overflow: hidden; */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  scroll-behavior: smooth;
+}
+
+.detail-produit {
+  flex-direction: column;
+  align-items: center;
+}
+.images {
+  width: 60%;
+  height: 300px;
+}
+.image-grande {
+  max-width: 275px;
+}
+.cadre-produit {
+  width: 60%;
+}
+
+/* --------------------------------PANIER ---------------------*/
+
+.panier-container {
+  flex-direction: column;
+  align-items: center;
+}
+.resume {
+  display: flex;
+  flex-direction: column;
+
+}
+.panier-articles, .panier-prix {
+  width: 60%;
+}
+.line-to-block {
+  display: block;
+}
+.detail-article td:nth-child(1) {
+width: 30%;
+}
+.detail-article td:nth-last-child(2), td:nth-child(3) {
+
+  width: 100%;
+}
+.panier-prix {
+  margin-top: 1em;
+}
+
+/* ---------------------- PAGE COMPTE --------------------*/
+
+.compte-container {
+  flex-direction: column;
+  align-items: center;
+}
+.cadre-commandes {
+  display: none;
+}
+.commandes-mobile {
+  display: block;
+}
 }

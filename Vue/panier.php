@@ -18,8 +18,8 @@
                      <td>
                         <img src="assets/img/comp/<?= $article[4] ?>" class="border" alt="image_produit">
                      </td>
-                     <td> <?= $article[1] . " " . $article[2] . ", " . $article[3] ?></td>
-                     <td><?= $article[6] ?> X <?= $article[5] ?> = <?= $article[6] * $article[5]  ?> €</td>
+                     <td class="line-to-block"> <?= $article[1] . " " . $article[2] . ", " . $article[3] ?></td>
+                     <td class="line-to-block"><?= $article[6] ?> x <?= $article[5] ?> = <?= $article[6] * $article[5]  ?> €</td>                       
                      <td><a class="aligne-droite" href="index.php?uc=panier&produit=<?= $article[0] ?>&action=supprimerUnProduit" onclick="return confirm('Voulez-vous vraiment retirer cet article ?');">
                            <span><img class="centre" src="assets/icones/bin.svg"></span></a></td>
 
@@ -90,7 +90,7 @@
    <input type="submit" name="commander" value="Commander" class="btn centre marge-25">
    <?php endif ?>
             </form>
-            <p class="centre text-comment">La livraison est offerte à partir de 50€ de commande.</p>
+            <p class="centre text-comment">La livraison est offerte à partir de 50€.</p>
 
          <?php   } else echo 'votre panier est vide' ?>
 

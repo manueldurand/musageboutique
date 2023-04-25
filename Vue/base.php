@@ -28,8 +28,8 @@
                     <li><a href="index.php?$uc=accueil">Accueil</a></li>
                     <li><a href="index.php?uc=boutique&action=tousLesProduits">Boutique</a></li>
                     <li><a href="index.php?uc=livraison">Livraison</a></li>
-                    <li><a href="index.php?$uc=contact">Contact</a></li>
-                    <li><a href="index.php?$uc=blog">Blog</a></li>
+                    <li><a href="index.php?uc=contact">Contact</a></li>
+                    <li><a href="index.php?uc=blog">Blog</a></li>
 
                 </ul>
             </div>
@@ -48,6 +48,14 @@
             </div>
             <div class="aside_head">
                 <div class="inside_aside">
+                    <div class="user-mobile mobile">
+                        <?php if (!isset($_SESSION['id_client'])) : ?>
+                            <a href="index.php?uc=connexion">
+                            <?php else : ?>
+                                <a href="index.php?uc=compte&action=consulter">
+                                <?php endif ?>
+                                <img src="assets/icones/icone-user.png" alt="icone utilisateur"></a>
+                    </div>
                     <div class="icone_panier"><a href="index.php?uc=panier&action=infoPanier"><img src="assets/icones/icons8-shopping-cart-48.png" class="icn-panier" alt="panier"></a></div>
                     <p class="legende_aside">
                         <?php if (!isset($_SESSION['id_client'])) : ?>
@@ -72,10 +80,10 @@
                 <li><a href="index.php?uc=livraison">
                         Livraison
                     </a></li>
-                <li><a href="index.php?$uc=contact">
+                <li><a href="index.php?uc=contact">
                         Contact
                     </a></li>
-                <li><a href="index.php?$uc=blog">
+                <li><a href="index.php?uc=blog">
                         Blog
                     </a></li>
             </ul>
@@ -137,6 +145,9 @@
                     break;
                 case 'valideCommande':
                     include 'Vue/valideCommande.php';
+                    break;
+                case 'contact':
+                    include 'Vue/contact.php';
                     break;
             }
             ?>
